@@ -1,0 +1,142 @@
+<!--pages/storeinfo/storeinfo.wxml-->
+<view class='cuisinePic'>
+  <image class='back_icon' src='/images/back.png' bindtap='back'></image>
+  <image class="picture" style="background:url('{{ShopDetail.shopBanner}}') no-repeat top left/100% auto">
+    <view class='pic-zz'></view>
+  </image>
+  <view class='shop_info'>
+    <view class='localtion'>{{ShopDetail.shopName}}</view>
+    <view class='cuisin-info'>
+      <view class='localtion-number'>
+        <block wx:if="{{ShopDetail.shopPerCapitaPrice}}">
+          <view class='number'>人均￥{{ShopDetail.shopPerCapitaPrice}}</view>
+        </block>
+        <block wx:else>
+          <view class='number'>到店咨询</view>
+        </block>
+        <view class='cuisin-cate'>{{shopClass}}</view>
+      </view>
+      <view class='btn_group'>
+        <button class='cuisin_share' open-type='share'>
+          <image class='share-icon' src='/images/share-w.png' /> 分享
+        </button>
+        <button class='foucs'>关注</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 营业时间 -->
+<view class='openTime'>
+  <image class='timeicon' src='/images/time.png'></image>
+  <block wx:if="{{ShopDetail.shopOpeningFlag == '1'}}">
+    <view class='time'>营业中：
+      <text class='time-info'>{{ShopDetail.shopOpeningHours}}</text>
+    </view>
+  </block>
+  <block wx:elif="{{ShopDetail.shopOpeningFlag == '2'}}">
+    <view class='time_close'>暂停营业：
+      <text class='time-info'>{{ShopDetail.shopOpeningHours}}</text>
+    </view>
+  </block>
+  <block wx:elif="{{ShopDetail.shopOpeningFlag == '3'}}">
+    <view class='time_detail'>营业时间：
+      <text class='time-info'>{{ShopDetail.shopOpeningHours}}</text>
+    </view>
+  </block>
+  <block wx:elif="{{ShopDetail.shopOpeningFlag == '4'}}">
+    <view class='time_unkown'>到店咨询
+      <text class='time-info'>{{ShopDetail.shopOpeningHours}}</text>
+    </view>
+  </block>
+</view>
+
+
+<!-- 地址 -->
+<view class='address-info'>
+  <view class='address-left'>
+    <image class='addressicon' src='/images/shopaddress.png'></image>
+    <view class='address'>地址：
+      <text class='add-detail'>{{ShopDetail.shopAddress}}</text>
+    </view>
+  </view>
+  <view class='address-right'>
+    <image class='local-icon' src='/images/localtion.png'></image>
+    <image class='phone-icon' src='/images/phone.png'></image>
+  </view>
+</view>
+
+
+<!-- 签到 -->
+<view class='current_shop_sign'>
+  <view class='sign-left'>
+    <view class='sign-left-photo'>
+      <block wx:for="{{ShopDetail.userAvatarUrlList}}">
+        <image class='sign-left-photo-i' style="background:url('{{item}}') no-repeat left top / 100% auto"></image>
+      </block>
+    </view>
+    <view class="sign-number">共{{ShopDetail.shopAutographCount}}人签到</view>
+  </view>
+  <button class='sign-btn'>签到</button>
+</view>
+
+<!-- 推荐菜 -->
+<block wx:if="{{ShopDetail.foodRecommendList}}">
+  <view class='cate'>
+    <text class="cate-title">推荐菜</text>
+    <scroll-view class="cate-scroll" scroll-x>
+      <block wx:for="{{ShopDetail.foodRecommendList}}">
+        <view class='cate-item'>
+          <view class='cate-box'>
+            <image style="background:url('{{item.foodImgUrl}}') no-repeat left top / 100% auto" class="cate-image" />
+            <text class="storename">{{item.foodName}}</text>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</block>
+
+<!-- 你可能还喜欢 -->
+<view class='nearbyfood'>
+  <view class='nearby'>
+    <text class='nearbyfood-title'>你可能还喜欢</text>
+    <!-- <view class='nearbyfood-recommed'>
+      <text class='recommed-text'>推荐</text>
+      <image src='/images/slidedown.png' class='slidedown'></image>
+    </view> -->
+  </view>
+  <view class='foodlist ul'>
+    <block wx:for="{{mayLikeList}}" wx:key="{{index}}">
+      <view class='fooditem li' bindtap='tostoreinfo'>
+        <image class='foodPic li-pic' style="background:url('{{item.shopBanner}}') no-repeat left top / 100% 100%">
+          <image src='/images/shop_dz.png' class='li-pic-dz'></image>
+          <view class='li-like'>
+            <image class='likeimg' src='/images/nearbylike.png'></image>
+            <text class='like-number'>{{item.followCount}}</text>
+          </view>
+          <view class='li-sign'>
+            <view class='li-sign-photo'>
+              <block wx:for="{{item.userAvatarUrlList}}" wx:key="{{index}}">
+                <image class='li-sign-photo-i' style="background:url('{{item}}') no-repeat left top / 100% auto"></image>
+              </block>
+            </view>
+            <text class='li-sign-number'>共{{item.shopAutographCount}}人签到</text>
+          </view>
+        </image>
+        <text class='food-name'>{{item.shopName}}</text>
+        <view class='price-position'>
+          <block wx:if="{{item.shopPerCapitaPrice}}">
+            <view class='price'>￥{{item.shopPerCapitaPrice}}/人</view>
+          </block>
+          <block wx:else>
+            <view class='price'>价格：到店咨询</view>
+          </block>
+          <view class='food-cate'>
+            <text class='distance'>{{shopClass}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

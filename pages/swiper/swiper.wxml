@@ -1,0 +1,8 @@
+<!--pages/swiper/swiper.wxml-->
+<swiper class='swiper' previous-margin="20rpx" next-margin="20rpx">
+  <swiper-item class='swiper_item'>
+    <block wx:for="{{imgUrl}}">
+      <image class='swiper_image' src="{{item}}"></image>
+    </block>
+  </swiper-item>
+</swiper>

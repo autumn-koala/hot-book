@@ -1,0 +1,62 @@
+<!--pages/nearby/nearby.wxml-->
+
+<view class='page_title'>网红店</view>
+
+<!-- 标签 -->
+<view class="label">
+  <text class='label-title'>标签</text>
+  <scroll-view scroll-x class='label-scroll'>
+    <block wx:for="{{NearbyShopClassList}}" wx:key="{{index}}">
+      <view class='lable-item' bindtap='tonearbyCate' data-shopClass="{{item.shopClassName}}" data-latitude="{{latitude}}" data-longitude="{{longitude}}">
+        <view class='label-box'>
+          <image style="background:url('{{item.shopClassImgUrl}}') no-repeat top left / 100% auto" class='lable-image'></image>
+          <text class='lable-cate'>{{item.shopClassName}}</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<!-- 附近美食 -->
+<view class='nearbyfood'>
+  <view class='nearby'>
+    <text class='nearbyfood-title'>附近美食</text>
+    <!-- <view class='nearbyfood-recommed'>
+      <text class='recommed-text'>推荐</text>
+      <image src='/images/slidedown.png' class='slidedown'></image>
+    </view> -->
+  </view>
+  <view class='foodlist ul'>
+    <block wx:for="{{NearbyShopList}}" wx:key="{{index}}">
+      <view class='fooditem li' bindtap='tostoreinfo'>
+        <image class='foodPic li-pic' style="background:url('{{item.shopBanner}}') no-repeat left top / 150% 100%">
+          <image src='/images/shop_dz.png' class='li-pic-dz'></image>
+          <view class='li-like'>
+            <image class='likeimg' src='/images/nearbylike.png'></image>
+            <text class='like-number'>{{item.followCount}}</text>
+          </view>
+          <view class='li-sign'>
+            <view class='li-sign-photo'>
+              <block wx:for="{{item.userAvatarUrlList}}" wx:key="{{index}}">
+                <image class='li-sign-photo-i' style="background:url('{{item}}') no-repeat left top / 100% auto"></image>
+              </block>
+            </view>
+            <text class='li-sign-number'>共{{item.shopAutographCount}}人签到</text>
+          </view>
+        </image>
+        <text class='food-name'>{{item.shopName}}</text>
+        <view class='price-position'>
+          <block wx:if="{{item.shopPerCapitaPrice}}">
+            <view class='price'>￥{{item.shopPerCapitaPrice}}/人</view>
+          </block>
+          <block wx:else>
+            <view class='price'>价格：到店咨询</view>
+          </block>
+          <view class='food-position'>
+            <image class='position_icon' src='/images/nearbyposition.png'></image>
+            <text class='distance'>{{item.distance}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

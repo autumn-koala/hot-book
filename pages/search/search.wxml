@@ -1,0 +1,44 @@
+<!--pages/search/search.wxml-->
+<view class='search'>
+  <image src='/images/search.png' class='search-icon'/>
+  <input class='search-input' placeholder='搜索网红店' placeholder-class='input-placeholder'></input>
+</view>
+
+<!-- 历史记录 -->
+<view class='history'>
+  <view class='title'>
+    <view class='title-text'>历史记录</view>
+    <image class='delete' src='/images/delete.png'></image>
+  </view>
+  <view class='history-list'>
+    <!-- <block wx:for="{{}}"> -->
+      <view class='history-item'>杭州美食</view>
+      <view class='history-item'>杭州美食</view>
+      <view class='history-item'>日料</view>
+      <view class='history-item'>杭州美食</view>
+      <view class='history-item'>杭州美食</view>
+      <view class='history-item'>日料</view>
+      <view class='history-item'>杭州美食</view>
+    <!-- </block> -->
+  </view>
+</view>
+
+<!-- 热门搜索 -->
+<view class='history hot'>
+  <view class='title'>
+    <view class='title-text'>热门搜索</view>
+  </view>
+  <view class='history-list'>
+    <!-- <block wx:for="{{}}"> -->
+      <view class='history-item'>
+        <image class='hot-icon' src='/images/hot.png'></image>
+      杭州美食</view>
+      <view class='history-item'>杭州美食</view>
+      <view class='history-item'>日料</view>
+      <view class='history-item'>杭州美食</view>
+      <view class='history-item'>杭州美食</view>
+      <view class='history-item'>日料</view>
+      <view class='history-item'>杭州美食</view>
+    <!-- </block> -->
+  </view>
+</view>

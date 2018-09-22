@@ -1,0 +1,45 @@
+<!--pages/nearbyCate/nearbyCate.wxml-->
+<image class='back_icon' src='/images/back_black.png' bindtap='back'></image>
+<view class='nearbyfood'>
+  <view class='nearby'>
+    <text class='nearbyfood-title'>附近{{shopClass}}</text>
+    <!-- <view class='nearbyfood-recommed'>
+      <text class='recommed-text'>推荐</text>
+      <image src='/images/slidedown.png' class='slidedown'></image>
+    </view> -->
+  </view>
+  <view class='foodlist ul'>
+    <block wx:for="{{NearbyShopList}}" wx:key="{{index}}">
+    <view class='fooditem li' bindtap='tostoreinfo'>
+      <image class='foodPic li-pic' style="background:url('{{item.shopBanner}}') no-repeat left top / 100% 100%">
+      <image src='/images/shop_dz.png' class='li-pic-dz'></image>
+        <view class='li-like'>
+          <image class='likeimg' src='/images/nearbylike.png'></image>
+          <text class='like-number'>{{item.followCount}}</text>
+        </view>
+        <view class='li-sign'>
+          <view class='li-sign-photo'>
+            <block wx:for="{{item.userAvatarUrlList}}" wx:key="{{index}}">
+            <image class='li-sign-photo-i' style="background:url('{{item}}') no-repeat left top / 100% auto"></image>
+            </block>
+          </view>
+          <text class='li-sign-number'>共{{item.shopAutographCount}}人签到</text>
+        </view>
+      </image>
+      <text class='food-name'>{{item.shopName}}</text>
+      <view class='price-position'>
+        <block wx:if="{{item.shopPerCapitaPrice}}">
+            <view class='price'>￥{{item.shopPerCapitaPrice}}/人</view>
+          </block>
+          <block wx:else>
+            <view class='price'>价格：到店咨询</view>
+          </block>
+        <view class='food-position'>
+            <image class='position_icon' src='/images/nearbyposition.png'></image>
+            <text class='distance'>{{item.distance}}</text>
+          </view>
+      </view>
+    </view>
+    </block>
+  </view>
+</view>

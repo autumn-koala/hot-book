@@ -1,0 +1,115 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.0.4",
+	"appid": "wx996150b87fa54538",
+	"projectname": "hot-store",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 11,
+			"list": [
+				{
+					"id": -1,
+					"name": "附近",
+					"pathName": "pages/nearby/nearby",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "my",
+					"pathName": "pages/my/my",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "地方美食",
+					"pathName": "pages/localCuisine/localCuisine",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商家信息",
+					"pathName": "pages/storeinfo/storeinfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的关注",
+					"pathName": "pages/myfoucs/myfoucs",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/search/search",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "搜索结果",
+					"pathName": "pages/searchResult/searchResult",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "定位",
+					"pathName": "pages/position/position",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "附近分类美食",
+					"pathName": "pages/nearbyCate/nearbyCate",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "轮播",
+					"pathName": "pages/swiper/swiper",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "shouye",
+					"pathName": "pages/index/index"
+				}
+			]
+		}
+	}
+}

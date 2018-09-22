@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText":"网红店",
+  "onReachBottomDistance":"50",
+  "usingComponents": {
+    "loading": "/component/loading/loading",
+    "wait":"/component/wait/wait",
+    "navigatorbar":"/component/navigator_bar/navigator_bar"
+  }
+}

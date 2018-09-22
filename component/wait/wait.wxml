@@ -1,0 +1,2 @@
+<!--component/wait/wait.wxml-->
+<view class="wait {{wait?'active':''}}"/>

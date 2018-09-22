@@ -1,0 +1,32 @@
+<!--pages/position/position.wxml-->
+<view class='position_map'>
+  <map 
+  style="width:100%;height:846rpx;"
+  latitude="{{latitude}}"
+  longitude="{{longitude}}"
+  markers="{{markers}}"
+  ></map>
+</view>
+
+<!-- 导航 -->
+<view class='navigator_bar'>
+  <view class='navigator_address'>
+    <image class='navigator_icon' src='/images/shopaddress.png'></image>
+    <text class='navigator_address_c'>杭州市滨江区长河路475号和瑞科技园杭州市滨江区长河路上腾讯微信总部</text>
+  </view>
+  <view class='navigator_type'>
+    <view class='navigator_type_item'>
+      <image class='navigator_type_icon' src=''></image>
+      <text class='navigator_type_time'>13分钟</text>
+    </view>
+    <view class='navigator_type_item'>
+      <image class='navigator_type_icon' src=''></image>
+      <text class='navigator_type_time'>13分钟</text>
+    </view>
+    <view class='navigator_type_item'>
+      <image class='navigator_type_icon' src=''></image>
+      <text class='navigator_type_time'>13分钟</text>
+    </view>
+  </view>
+  <button class='navigator_to'>到这里去</button>
+</view>

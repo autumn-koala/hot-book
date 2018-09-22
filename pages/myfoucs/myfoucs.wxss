@@ -1,0 +1,245 @@
+/* pages/myfoucs/myfoucs.wxss */
+.page_title{
+  width: 100%;
+  height: 128rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34rpx;
+  font-weight: bold;
+  padding: 60rpx 0 24rpx 0; 
+  box-sizing: border-box;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.back_icon {
+  width: 18rpx;
+  height: 37rpx;
+  padding: 70rpx 40rpx 30rpx;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+}
+.top-tab{
+  margin: 128rpx 40rpx 40rpx;
+  display: flex;
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #b8b8b8;
+}
+.option{
+  margin-right: 30rpx;
+}
+.option.selected{
+  color: #000;
+}
+
+/* 商家列表 */
+.nearbyfood{
+  margin: 0 40rpx;
+}
+.nearby{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.nearbyfood-title{
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #000;
+}
+.nearbyfood-recommed{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.recommed-text{
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #000;
+}
+.slidedown{
+  width: 14rpx;
+  height: 10rpx;
+  margin-left: 9rpx;
+}
+.ul {
+  width: 670rpx;
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ul .li {
+  display: flex;
+  flex-direction: column;
+  width: 325rpx;
+  margin-right: 20rpx;
+  margin-bottom: 60rpx;
+}
+
+.ul .li:nth-of-type(2n) {
+  margin-right: 0;
+}
+
+.li-pic {
+  width: 100%;
+  height: 325rpx;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+.li-pic-dz{
+  width: 100%;
+  height: 100rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.li-like {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.likeimg {
+  width: 28rpx;
+  height: 26rpx;
+  margin-bottom: 10rpx;
+}
+
+.like-number {
+  font-size: 20rpx;
+  font-weight: 400;
+  color: #fff;
+}
+
+.li-sign {
+  position: absolute;
+  left: 15rpx;
+  bottom: 15rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.li-sign-photo {
+  width: 92rpx;
+  height: 40rpx;
+  position: relative;
+  margin-right: 10rpx;
+}
+
+.li-sign-photo-i {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 1rpx  solid #eaeaea;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.li-sign-photo-i:nth-child(2){
+  left: 26rpx;
+}
+.li-sign-photo-i:nth-child(3){
+  left: 52rpx;
+}
+.li-sign-number{
+  font-size: 20rpx;
+  font-weight: 400;
+  color: #fff;
+}
+
+.food-name {
+  width: 300rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 15rpx;
+}
+
+.price-position {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.price {
+  color: #f55;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.food-cate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx 15rpx;
+  background: #fff;
+  border-radius: 5rpx;
+  border: 1rpx solid #acacac;
+}
+
+.distance {
+  font-size: 18rpx;
+  font-weight: 400;
+  color: #acacac;
+}
+
+/* 标签列表 */
+.labellist{
+  margin: 0 40rpx;
+}
+.label-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+.item-left{
+  display: flex;
+  align-items: center;
+}
+.storePic{
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 30rpx;
+}
+.storeCate{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.cate-title{
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #000;
+}
+.store-number{
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #acacac;
+  margin-top: 30rpx;
+}
+.foucsed{
+    font-size: 24rpx;
+    font-weight: 400;
+    color: #acacac;
+    padding: 15rpx 20rpx;
+    border: 1rpx solid #acacac;
+    border-radius: 5rpx;
+}

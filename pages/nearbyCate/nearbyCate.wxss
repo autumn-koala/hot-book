@@ -1,0 +1,177 @@
+/* pages/nearbyCate/nearbyCate.wxss */
+.back_icon {
+  width: 18rpx;
+  height: 37rpx;
+  padding: 70rpx 40rpx 30rpx;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+}
+
+
+.nearbyfood{
+  padding-top: 116rpx;
+  margin: 20rpx 40rpx 0;
+}
+.nearby{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.nearbyfood-title{
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #000;
+}
+.nearbyfood-recommed{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.recommed-text{
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #000;
+}
+.slidedown{
+  width: 14rpx;
+  height: 10rpx;
+  margin-left: 9rpx;
+}
+.ul {
+  width: 670rpx;
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ul .li {
+  display: flex;
+  flex-direction: column;
+  width: 325rpx;
+  margin-right: 20rpx;
+  margin-bottom: 60rpx;
+}
+
+.ul .li:nth-of-type(2n) {
+  margin-right: 0;
+}
+
+.li-pic {
+  width: 100%;
+  height: 325rpx;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+.li-pic-dz{
+  width: 100%;
+  height: 100rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.li-like {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.likeimg {
+  width: 28rpx;
+  height: 26rpx;
+  margin-bottom: 10rpx;
+}
+
+.like-number {
+  font-size: 20rpx;
+  font-weight: 400;
+  color: #fff;
+}
+
+.li-sign {
+  position: absolute;
+  left: 15rpx;
+  bottom: 15rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.li-sign-photo {
+  width: 92rpx;
+  height: 40rpx;
+  position: relative;
+  margin-right: 10rpx;
+}
+
+.li-sign-photo-i {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 1rpx  solid #eaeaea;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.li-sign-photo-i:nth-child(2){
+  left: 26rpx;
+}
+.li-sign-photo-i:nth-child(3){
+  left: 52rpx;
+}
+.li-sign-number{
+  font-size: 20rpx;
+  font-weight: 400;
+  color: #fff;
+}
+
+.food-name {
+  width: 300rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 15rpx;
+}
+
+.price-position {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.price {
+  color: #f55;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.food-position {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx 15rpx;
+  background: #f55;
+  border-radius: 5rpx;
+  /* border: 1rpx solid #acacac; */
+}
+.position_icon{
+  width: 14rpx;
+  height: 17rpx;
+  margin-right: 5rpx;
+}
+.distance {
+  font-size: 18rpx;
+  font-weight: 400;
+  color: #fff;
+}

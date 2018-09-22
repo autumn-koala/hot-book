@@ -1,0 +1,104 @@
+<!--pages/index/index.wxml-->
+
+<!-- 加载 -->
+<!-- <loading loading="{{loading}}"></loading> -->
+<!-- <navigatorbar title="网红店" visible="false"></navigatorbar> -->
+<view class='page_title'>网红店</view>
+
+<view class='search' bindtap='tosearch' hover-stay-time="100ms">
+  <image src='/images/search.png' class='search-icon' />
+  <input class='search-input' placeholder='搜索网红店' placeholder-class='input-placeholder' disabled='ture'></input>
+</view>
+
+<!-- 轮播 -->
+<swiper autoplay="{{autoplay}}" previous-margin="{{preMargin}}rpx" next-margin="{{nextMargin}}rpx" current='0'>
+  <block wx:for="{{Banner}}" wx:key="{{index}}">
+    <swiper-item class="swiper_item">
+      <image style="background:url('{{item.bannerImgUrl}}') no-repeat center center /cover" class="slide-image"></image>
+    </swiper-item>
+  </block>
+</swiper>
+
+
+<!-- 分类 -->
+<view class='cate'>
+  <text class="cate-title">分类</text>
+  <scroll-view class="cate-scroll" scroll-x>
+    <block wx:for="{{CityClassifyList}}" wx:key="{{index}}">
+      <view class='cate-item'>
+        <navigator url="/pages/localCuisine/localCuisine?cityName={{item.cityName}}">
+          <view class='cate-box'>
+            <image src="{{item.cityImgUrl}}" class="cate-image">
+              <text class="number">{{item.cityAutographSumCount}}人已签到</text>
+            </image>
+            <text class="position">{{item.cityLabel}}</text>
+          </view>
+        </navigator>
+
+      </view>
+
+    </block>
+  </scroll-view>
+</view>
+
+<!-- 全部 -->
+<view class='all'>
+  <view class='all-top'>
+    <text class='all-title'>全部</text>
+    <!-- <view class='recommed'>
+      <text class='all-recommed'>推荐</text>
+      <image src="/images/slidedown.png"></image>
+    </view> -->
+
+  </view>
+  <view class='foodlist'>
+    <block wx:for="{{ShopList}}" wx:key="{{index}}">
+      <view class='food-item'>
+        <navigator url='/pages/storeinfo/storeinfo?shopNo={{item.shopNo}}&shopClass={{item.shopClass}}&shopCity={{item.shopCity}}'>
+          <image class='foodImg' style="background:url('{{item.shopBanner}}') no-repeat center left/100% auto">
+
+            <view class='cate'>
+              <text>{{item.shopClass}}</text>
+            </view>
+            <block wx:if="{{!item.follow}}">
+              <view class='like' catchtap='shopLike' data-shopNo="{{item.shopNo}}" data-followCount="{{item.followCount}}" data-follow='{{item.follow}}' data-index="{{index}}">
+                <text class='hit'>{{item.followCount}}</text>
+                <image src="/images/nearbylike.png"></image>
+              </view>
+            </block>
+            <block wx:else>
+              <view class='like' catchtap='shopLike' data-shopNo="{{item.shopNo}}" data-followCount="{{item.followCount}}" data-follow='{{item.follow}}' data-index="{{index}}">
+                <text class='hit'>{{item.followCount}}</text>
+                <image src="/images/nearbylike-s.png"></image>
+              </view>
+            </block>
+          </image>
+        </navigator>
+        <view class='position-share'>
+          <view class='position'>{{item.citylabel}}</view>
+          <button class='share' open-type='share'>
+            <image class='share-icon' src='/images/share.png' /> 分享
+          </button>
+        </view>
+        <view class='store' bindtap='tostoreinfo' data-shopNo="{{item.shopNo}}">{{item.shopName}}</view>
+        <view class='price-sign'>
+          <block wx:if="{{item.shopPerCapitaPrice}}">
+            <view class='price'>￥{{item.shopPerCapitaPrice}}/人</view>
+          </block>
+          <block wx:else>
+            <view class='price'>价格：到店咨询</view>
+          </block>
+          <view class='sign'>
+            <view class='sign-number'>共{{item.shopAutographCount}}人签到</view>
+            <view class='sign-photo'>
+              <block wx:for="{{item.userAvatarUrlList}}" wx:key="{{index}}">
+                <image class='sign_photo_i' style="background:url('{{item}}') no-repeat center center /100% auto"></image>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <wait wait="{{wait}}" />
+  </view>
+</view>

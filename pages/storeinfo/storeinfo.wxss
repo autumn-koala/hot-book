@@ -1,0 +1,517 @@
+/* pages/storeinfo/storeinfo.wxss */
+
+.back_icon {
+  width: 18rpx;
+  height: 37rpx;
+  padding: 70rpx 40rpx 30rpx;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+
+.cuisinePic {
+  width: 100%;
+  height: 400rpx;
+  position: relative;
+}
+
+.picture {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.pic-zz{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.cuisin-info {
+  width: 670rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: #fff;
+}
+
+.localtion-number {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.shop_info {
+  width: 100%;
+  position: absolute;
+  bottom: 40rpx;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.localtion {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  color: #fff;
+}
+
+.number {
+  font-size: 24rpx;
+  font-weight: 400;
+  margin-bottom: 20rpx;
+}
+
+.cuisin-cate {
+  font-size: 20rpx;
+  padding: 10rpx 14rpx;
+  border: 1rpx solid #fff;
+}
+
+.btn_group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.share-icon{
+  width: 30rpx;
+  height: 24rpx;
+}
+.cuisin_share {
+  font-size: 24rpx;
+  font-weight: 500;
+  border-radius: 5rpx;
+  width: 112rpx;
+  color: #fff;
+  margin-right: 20rpx;
+  background: transparent;
+  border: 1rpx solid #fff;
+  /* box-sizing: border-box; */
+}
+
+.foucs {
+  font-size: 24rpx;
+  font-weight: 500;
+  background: #f55;
+  /* border: 1rpx solid #f55;
+  box-sizing: border-box; */
+  border-radius: 5rpx;
+  width: 112rpx;
+  color: #fff;
+}
+
+/* 营业时间 */
+
+.openTime {
+  margin: 0 40rpx;
+  padding: 40rpx 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+}
+
+.timeicon {
+  width: 26rpx;
+  height: 26rpx;
+  margin-right: 20rpx;
+}
+
+.time {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #f55;
+}
+
+.time_close {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #acacac;
+}
+.time_detail{
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #000;
+}
+.time_unkown{
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #000;
+}
+/* 地址 */
+
+.address-info {
+  margin: 0 40rpx;
+  padding: 40rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+}
+
+.address-left {
+  display: flex;
+  align-items: center;
+}
+
+.addressicon {
+  width: 26rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
+}
+
+.address {
+  font-size: 26rpx;
+  display:flex;
+  align-items:center;
+
+}
+
+.add-detail {
+  width: 400rpx;
+  height: 33rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #424242;
+  display: inline-block;
+}
+
+.address-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.local-icon {
+  width: 26rpx;
+  height: 31rpx;
+  margin-right: 40rpx;
+}
+
+.phone-icon {
+  width: 25rpx;
+  height: 31rpx;
+}
+
+/* 签到 */
+
+.current_shop_sign {
+  height: 116rpx;
+  margin: 0 40rpx;
+  padding: 40rpx 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+}
+
+.sign-left {
+  display: flex;
+  align-items: center;
+}
+
+.sign-left-photo {
+  width: 358rpx;
+  height: 52rpx;
+  margin-right: 15rpx;
+  position:relative;
+}
+
+.sign-left-photo-i {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1rpx solid #eaeaea;
+}
+.sign-left-photo-i:nth-child(2){
+  left: 34rpx;
+}
+.sign-left-photo-i:nth-child(3){
+  left: 68rpx;
+}
+.sign-left-photo-i:nth-child(4){
+  left: 102rpx;
+}
+.sign-left-photo-i:nth-child(5){
+  left: 136rpx;
+}
+.sign-left-photo-i:nth-child(6){
+  left: 170rpx;
+}
+.sign-left-photo-i:nth-child(7){
+  left: 204rpx;
+}
+.sign-left-photo-i:nth-child(8){
+  left: 238rpx;
+}
+.sign-left-photo-i:nth-child(9){
+  left: 272rpx;
+}
+.sign-left-photo-i:nth-child(10){
+  left: 306rpx;
+}
+
+.sign-number {
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.sign-btn {
+  width: 112rpx;
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #f55;
+  background: #fff;
+  border: 1rpx solid #f55;
+  margin: 0;
+}
+
+/* 推荐菜 */
+
+.cate {
+  margin-top: 40rpx;
+}
+
+.cate-title {
+  margin-left: 40rpx;
+  font-size: 34rpx;
+  color: #000;
+  font-weight: 500;
+}
+
+.cate-scroll {
+  /* width: auto; */
+  height: 170rpx;
+  margin-top: 40rpx;
+  white-space: nowrap;
+}
+
+.cate-image {
+  width: 200rpx;
+  height: 114rpx;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.cate-scroll .cate-item {
+  width: 200rpx;
+  display: inline-block;
+  margin-right: 20rpx;
+}
+
+.cate-scroll .cate-item:first-child {
+  margin-left: 40rpx;
+}
+
+.cate-scroll .cate-item:last-child {
+  margin-right: 40rpx;
+}
+
+.cate-item .cate-box {
+  width: 200rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-right: 20rpx; */
+}
+
+/* .cate-scroll .number{
+  font-size: 20rpx;
+  position: absolute;
+  bottom: 10rpx;
+  left: 9rpx;
+  color: #fff;
+} */
+
+.cate-scroll .storename {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #000;
+  margin-top: 22rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+/* 你可能还喜欢 */
+
+.nearbyfood {
+  margin: 60rpx 40rpx 0;
+}
+
+.nearby {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.nearbyfood-title {
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #000;
+}
+
+.nearbyfood-recommed {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.recommed-text {
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #000;
+}
+
+.slidedown {
+  width: 14rpx;
+  height: 10rpx;
+  margin-left: 9rpx;
+}
+
+.ul {
+  width: 670rpx;
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ul .li {
+  display: flex;
+  flex-direction: column;
+  width: 325rpx;
+  margin-right: 20rpx;
+  margin-bottom: 60rpx;
+}
+
+.ul .li:nth-of-type(2n) {
+  margin-right: 0;
+}
+
+.li-pic {
+  width: 100%;
+  height: 325rpx;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+.li-pic-dz{
+  width: 100%;
+  height: 100rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.li-like {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.likeimg {
+  width: 28rpx;
+  height: 26rpx;
+  margin-bottom: 10rpx;
+}
+
+.like-number {
+  font-size: 20rpx;
+  font-weight: 400;
+  color: #fff;
+}
+
+.li-sign {
+  position: absolute;
+  left: 15rpx;
+  bottom: 15rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.li-sign-photo {
+  width: 92rpx;
+  height: 40rpx;
+  position: relative;
+  margin-right: 10rpx;
+}
+
+.li-sign-photo-i {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 1rpx  solid #eaeaea;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.li-sign-photo-i:nth-child(2){
+  left: 26rpx;
+}
+.li-sign-photo-i:nth-child(3){
+  left: 52rpx;
+}
+.li-sign-number{
+  font-size: 20rpx;
+  font-weight: 400;
+  color: #fff;
+}
+
+.food-name {
+  width: 300rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 15rpx;
+}
+
+.price-position {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.price {
+  color: #f55;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.food-cate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx 15rpx;
+  background: #fff;
+  border-radius: 5rpx;
+  border: 1rpx solid #acacac;
+}
+
+.distance {
+  font-size: 18rpx;
+  font-weight: 400;
+  color: #acacac;
+}

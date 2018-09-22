@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/nearby/nearby",
+    "pages/my/my",
+    "pages/localCuisine/localCuisine",
+    "pages/storeinfo/storeinfo",
+    "pages/myfoucs/myfoucs",
+    "pages/feedback/feedback",
+    "pages/application/application",
+    "pages/search/search",
+    "pages/searchResult/searchResult",
+    "pages/position/position",
+    "pages/nearbyCate/nearbyCate",
+    "pages/swiper/swiper",
+    "component/loading/loading"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom",
+    "enablePullDownRefresh":true
+  },
+  "tabBar": {
+    "color": "#b8b8b8",
+    "selectedColor": "#000000",
+    "backgroundColor": "#fff",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/index.png",
+        "selectedIconPath": "images/index-active.png"
+      },
+      {
+        "pagePath": "pages/nearby/nearby",
+        "text": "附近",
+        "iconPath": "images/nearby.png",
+        "selectedIconPath": "images/nearby-active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my-active.png"
+      }
+    ]
+  }
+}
