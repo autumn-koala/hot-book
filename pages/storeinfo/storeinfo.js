@@ -20,6 +20,54 @@ Page({
       //
     })
   },
+  getPosition:function(e){
+    this.setData({
+      latitude: parseFloat(e.currentTarget.dataset.latitude),
+      longitude:parseFloat(e.currentTarget.dataset.longitude),
+    })
+    wx.openLocation({
+      latitude: this.data.latitude,
+      longitude: this.data.longitude,
+      name:this.data.ShopDetail.shopName,
+      address:this.data.ShopDetail.shopAddress,
+      scale:14
+    })
+    // wx.getLocation({
+    //   type: 'gcj02', 
+    //   success: function(res) {
+        
+    //   },
+    // })
+    
+  },
+  //店铺关注
+  shopLike:function(e){
+    console.log(1);
+    let shopNo = e.currentTarget.dataset.shopNo;
+    let follow = this.data.ShopDetail.follow;
+    let followCount = this.data.ShopDetail.followCount;
+    wx.request({
+      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
+      method:"post",
+      data:{
+        "shopNo":this.data.shopNo,
+        "userNo": app.globalData.userInfo.userNo
+      },
+      success:res=>{
+        if(this.data.ShopDetail.follow){
+          this.setData({
+            [follow]:!this.data.ShopDetail.follow,
+            [followCount]:this.data.ShopDetail.followCount-1
+          })
+        }else{
+          this.setData({
+            [follow]: !this.data.ShopDetail.follow,
+            [followCount]: this.data.ShopDetail.followCount + 1
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

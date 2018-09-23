@@ -54,31 +54,32 @@ Page({
 
   /**店铺关注 */
   shopLike: function(e) {
-    
-  },
-
-  /**分享 */
-  toshareShop: function(e) {
+    // let shopNo = e.currentTarget.dataset.shopNo;
+    let index = e.currentTarget.dataset.index;
+    let follow = `ShopList[${index}].follow`;
+    let followCount = `ShopList[${index}].followCount`;
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopShare',
-      method: "post",
-      data: {
-        "shopNo": e.currentTarget.dataset.shopNo,
-        "userNo": this.data.userNo
+      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
+      method:"post",
+      data:{
+        "shopNo":this.data.ShopList[index].shopNo,
+        "userNo": app.globalData.userInfo.userNo
       },
-      success: res => {
-        this.setData({
-
-        })
+      success:res=>{
+        if (this.data.ShopList[index].follow){
+          this.setData({
+            [follow]:!this.data.ShopList[index].follow,
+            [followCount]: this.data.ShopList[index].followCount-1
+          })
+        }else{
+          this.setData({
+            [follow]: !this.data.ShopList[index].follow,
+            [followCount]: this.data.ShopList[index].followCount + 1
+          })
+        }
       }
     })
   },
-
-
-
-
-
-
 
 
   /**
@@ -104,7 +105,7 @@ Page({
     //获取首页全部店铺列表
     wx.showLoading({
       title: 'Loading',
-      mask:true
+      mask: true
     })
     wx.request({
       url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryShopList',
@@ -144,7 +145,7 @@ Page({
         })
       }
     })
-    
+
   },
 
 

@@ -171,6 +171,7 @@ color: transparent;
   width: 670rpx;
   height: 325rpx;
   position: relative;
+  border-radius: 10rpx;
 }
 .foodImg .cate{
   position: absolute;
@@ -194,6 +195,12 @@ color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.hit{
+  text-shadow: 10rpx 10rpx 30rpx #acacac;
+}
+.hit.hot{
+  color: #f55;
 }
 .foodImg .like image{
   width: 34rpx;

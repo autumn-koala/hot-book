@@ -20,7 +20,7 @@
         <button class='cuisin_share' open-type='share'>
           <image class='share-icon' src='/images/share-w.png' /> 分享
         </button>
-        <button class='foucs'>关注</button>
+        <button class='foucs' catchtap='shopLike' data-shopNo="{{ShopDetail.shopNo}}">{{ShopDetail.follow ? '已关注':'关注'}}</button>
       </view>
     </view>
   </view>
@@ -56,12 +56,12 @@
 <view class='address-info'>
   <view class='address-left'>
     <image class='addressicon' src='/images/shopaddress.png'></image>
-    <view class='address'>地址：
-      <text class='add-detail'>{{ShopDetail.shopAddress}}</text>
+    <view class='address'>地址：{{ShopDetail.shopAddress}}
+      <!-- <text class='add-detail'>{{ShopDetail.shopAddress}}</text> -->
     </view>
   </view>
   <view class='address-right'>
-    <image class='local-icon' src='/images/localtion.png'></image>
+    <image class='local-icon' src='/images/localtion.png' bindtap='getPosition' data-latitude='{{ShopDetail.shopJingdu}}' data-longitude='{{ShopDetail.shopWeidu}}'></image>
     <image class='phone-icon' src='/images/phone.png'></image>
   </view>
 </view>
@@ -71,7 +71,7 @@
 <view class='current_shop_sign'>
   <view class='sign-left'>
     <view class='sign-left-photo'>
-      <block wx:for="{{ShopDetail.userAvatarUrlList}}">
+      <block wx:for="{{ShopDetail.userAvatarUrlList}}" wx:key="{{index}}">
         <image class='sign-left-photo-i' style="background:url('{{item}}') no-repeat left top / 100% auto"></image>
       </block>
     </view>
@@ -85,7 +85,7 @@
   <view class='cate'>
     <text class="cate-title">推荐菜</text>
     <scroll-view class="cate-scroll" scroll-x>
-      <block wx:for="{{ShopDetail.foodRecommendList}}">
+      <block wx:for="{{ShopDetail.foodRecommendList}}" wx:key="{{index}}">
         <view class='cate-item'>
           <view class='cate-box'>
             <image style="background:url('{{item.foodImgUrl}}') no-repeat left top / 100% auto" class="cate-image" />

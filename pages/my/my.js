@@ -15,7 +15,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      
+      avatarUrl: app.globalData.userInfo.avatarUrl,
+      nickName: app.globalData.userInfo.nickName
     })
   },
 

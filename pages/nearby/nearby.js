@@ -151,7 +151,34 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    this.setData({
+      p: this.data.p + 1
+    })
+    wx.request({
+      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
+      method: "post",
+      data: {
+        "currentPage": this.data.p,
+        "pageSize": "8",
+        "latitude": this.data.latitude,
+        "longitude": this.data.longitude,
+        "userNo": app.globalData.userInfo.userNo
+      },
+      success: res => {
+        if(res.data.data){
+          this.setData({
+            NearbyShopList: this.data.NearbyShopList.concat(res.data.data)
+          })
+        }else{
+          wx.showToast({
+            title: '没有更多了...',
+            icon:"none",
+            mask:true
+          })
+        }
+        
+      }
+    })
   },
 
   /**

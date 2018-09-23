@@ -1,6 +1,4 @@
 <!--component/navigator_bar/navigator_bar.wxml-->
-<view class='navigate' style='padding-top: {{statusBar_height}}px; height: {{statusBar_height*2}}px'>
-  <image class="back_img {{visible ? disvisible : ''}}" src='/images/back_black.png' bindtap='back'></image>
+<view class='navigate' style='padding-top: {{statusBar_height}}px;'>
   <text class='navigate_txt'>{{title}}</text>
-  <view></view>
 </view>

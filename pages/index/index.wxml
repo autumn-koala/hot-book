@@ -2,7 +2,7 @@
 
 <!-- 加载 -->
 <!-- <loading loading="{{loading}}"></loading> -->
-<!-- <navigatorbar title="网红店" visible="false"></navigatorbar> -->
+<!-- <navigatorbar title="网红店"></navigatorbar> -->
 <view class='page_title'>网红店</view>
 
 <view class='search' bindtap='tosearch' hover-stay-time="100ms">
@@ -61,14 +61,14 @@
               <text>{{item.shopClass}}</text>
             </view>
             <block wx:if="{{!item.follow}}">
-              <view class='like' catchtap='shopLike' data-shopNo="{{item.shopNo}}" data-followCount="{{item.followCount}}" data-follow='{{item.follow}}' data-index="{{index}}">
+              <view class='like' catchtap='shopLike' data-shopNo="{{item.shopNo}}" data-index='{{index}}'>
                 <text class='hit'>{{item.followCount}}</text>
                 <image src="/images/nearbylike.png"></image>
               </view>
             </block>
             <block wx:else>
-              <view class='like' catchtap='shopLike' data-shopNo="{{item.shopNo}}" data-followCount="{{item.followCount}}" data-follow='{{item.follow}}' data-index="{{index}}">
-                <text class='hit'>{{item.followCount}}</text>
+              <view class='like' catchtap='shopLike' data-shopNo="{{item.shopNo}}"  data-index='{{index}}'>
+                <text class='hit hot'>{{item.followCount}}</text>
                 <image src="/images/nearbylike-s.png"></image>
               </view>
             </block>

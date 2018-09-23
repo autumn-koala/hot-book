@@ -1,7 +1,7 @@
 <!--pages/my/my.wxml-->
 <view class='top'>
-  <image class='photo' src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-  <view class= "username">Joshi Nye Tamata</view>
+  <image class='photo' src="{{avatarUrl}}"></image>
+  <view class= "username">{{nickName}}</view>
 </view>
 <view class='split-line'></view>
 <!-- 选项列表 -->

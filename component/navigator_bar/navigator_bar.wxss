@@ -1,28 +1,20 @@
 /* component/navigator_bar/navigator_bar.wxss */
 .navigate{
   width: 100%;
-  min-height: 128rpx;
-  padding: 60rpx 40rpx 24rpx 40rpx;
+  height: 128rpx;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
   background: white;
   z-index: 999;
 }
-
-.back_img{
-  width: 18rpx;
-  height: 37rpx;
-}
-.back_img.disvisible{
-  visibility: hidden;
-}
-
 .navigate_txt{
+  /* padding: 20rpx 40rpx 24rpx 40rpx; */
+  /* box-sizing: border-box; */
   font-size: 32rpx;
   color: black;
   font-weight: bold;

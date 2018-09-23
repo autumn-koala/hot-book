@@ -22,7 +22,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    statusBar_height: app.globalData.statubar_height,
+    statusBar_height: app.globalData.navHeight,
     title: '',
   },
 
