@@ -33,6 +33,7 @@
   height: 30rpx;
   top: 150rpx;
   left: 60rpx;
+  z-index:100;
 }
 
 /* 历史记录 */

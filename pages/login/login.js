@@ -11,7 +11,6 @@ Page({
   },
 
   bindgetuserinfo: function (e) {
-    console.log(e);
     if (e.detail.userInfo) {
       app.login();
       wx.switchTab({

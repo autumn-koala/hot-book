@@ -1,24 +1,18 @@
 <!--pages/search/search.wxml-->
 <view class='search'>
-  <image src='/images/search.png' class='search-icon'/>
-  <input class='search-input' placeholder='搜索网红店' placeholder-class='input-placeholder'></input>
+  <image src='/images/search.png' bindtap='searchBtn' class='search-icon'/>
+  <input class='search-input' bindinput='contextChange' value='{{searchContext}}' bindconfirm='searchBtn' confirm-type='search' placeholder='搜索网红店' placeholder-class='input-placeholder'></input>
 </view>
 
 <!-- 历史记录 -->
 <view class='history'>
-  <view class='title'>
+  <view class='title' wx:if='{{historyList.length>0}}'>
     <view class='title-text'>历史记录</view>
-    <image class='delete' src='/images/delete.png'></image>
+    <image class='delete' bindtap='clearHistory' src='/images/delete.png'></image>
   </view>
   <view class='history-list'>
     <!-- <block wx:for="{{}}"> -->
-      <view class='history-item'>杭州美食</view>
-      <view class='history-item'>杭州美食</view>
-      <view class='history-item'>日料</view>
-      <view class='history-item'>杭州美食</view>
-      <view class='history-item'>杭州美食</view>
-      <view class='history-item'>日料</view>
-      <view class='history-item'>杭州美食</view>
+      <view class='history-item' bindtap='searchIcon' data-name='{{item}}' wx:for='{{historyList}}' wx:key='index'>{{item}}</view>
     <!-- </block> -->
   </view>
 </view>
@@ -30,15 +24,10 @@
   </view>
   <view class='history-list'>
     <!-- <block wx:for="{{}}"> -->
-      <view class='history-item'>
-        <image class='hot-icon' src='/images/hot.png'></image>
-      杭州美食</view>
-      <view class='history-item'>杭州美食</view>
-      <view class='history-item'>日料</view>
-      <view class='history-item'>杭州美食</view>
-      <view class='history-item'>杭州美食</view>
-      <view class='history-item'>日料</view>
-      <view class='history-item'>杭州美食</view>
+      <view class='history-item' wx:for-index='index' bindtap='searchIcon' data-name='{{item}}' wx:for='{{hotSearchList}}' wx:key='index'>
+        <image class='hot-icon' wx:if='{{index===0}}' src='/images/hot.png'></image>
+        <text>{{item}}</text>
+      </view>
     <!-- </block> -->
   </view>
 </view>

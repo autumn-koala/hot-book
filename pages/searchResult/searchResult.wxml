@@ -1,14 +1,14 @@
 <!--pages/searchResult/searchResult.wxml-->
 <view class='search'>
   <image src='/images/search.png' class='search-icon'/>
-  <input class='search-input' placeholder='搜索网红店' placeholder-class='input-placeholder'></input>
+  <input class='search-input' placeholder='搜索网红店' value='{{searchContext}}' placeholder-class='input-placeholder'></input>
   <image wx:if="{{true}}" class='close' src='/images/close.png'></image>
 </view>
 
 
 <!-- 搜索结果 -->
 <view class='search-result'>
-  <block wx:if="{{false}}">
+  <block wx:if="{{searchNone}}">
     <view class='search_nc'>
       <image class='search-nothing' src='/images/search-nothing.png'></image>
       <text class='search_tip'>没有找到相关内容，换个词试试吧</text>
@@ -19,11 +19,11 @@
       <text class='search_hc_title'>2356家店铺</text>
       <view class='foodlist ul'>
         <!-- <block wx:for="{{foodlist}}"> -->
-          <view class='fooditem li'>
-            <image class='foodPic' src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg">
+          <view class='fooditem li' wx:for='{{searchList}}'>
+            <image class='foodPic' src='{{item.shopBanner}}'>
               <view class='like'>
                 <image class='likeimg' src='/images/nearbylike.png'></image>
-                <text class='number'>125</text>
+                <text class='number'>{{item.followCount}}</text>
               </view>
               <view class='sign'>
               <view class='sign-photo'>
@@ -33,89 +33,14 @@
                     <image class='photo' src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
                   <!-- </block> -->
                 </view>
-                <text class='number'>共18人签到</text>
+                <text class='number'>共{{item.shopAutographCount}}人签到</text>
               </view>
             </image>
-            <text class='food-name'>喜茶</text>
+            <text class='food-name'>{{item.shopName}}</text>
             <view class='price-position'>
-              <view class='price'>￥89/人</view>
+              <view class='price'>￥{{item.shopPerCapitaPrice || 0}}/人</view>
               <view class='food-cate'>
-                <text class='distance'>甜品饮品</text>
-              </view>
-            </view>
-          </view>
-          <view class='fooditem li'>
-            <image class='foodPic' src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg">
-              <view class='like'>
-                <image class='likeimg' src='/images/nearbylike.png'></image>
-                <text class='number'>125</text>
-              </view>
-              <view class='sign'>
-              <view class='sign-photo'>
-                  <!-- <block wx:for="{{item.photo}}"> -->
-                    <image class='photo' src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-                    <image class='photo' src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-                    <image class='photo' src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-                  <!-- </block> -->
-                </view>
-                <text class='number'>共18人签到</text>
-              </view>
-            </image>
-            <text class='food-name'>喜茶</text>
-            <view class='price-position'>
-              <view class='price'>￥89/人</view>
-              <view class='food-cate'>
-                <text class='distance'>甜品饮品</text>
-              </view>
-            </view>
-          </view>
-          <view class='fooditem li'>
-            <image class='foodPic' src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg">
-              <view class='like'>
-                <image class='likeimg' src='/images/nearbylike.png'></image>
-                <text class='number'>125</text>
-              </view>
-              <view class='sign'>
-              <view class='sign-photo'>
-                  <!-- <block wx:for="{{item.photo}}"> -->
-                    <image class='photo' src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-                    <image class='photo' src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-                    <image class='photo' src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-                  <!-- </block> -->
-                </view>
-                <text class='number'>共18人签到</text>
-              </view>
-            </image>
-            <text class='food-name'>喜茶</text>
-            <view class='price-position'>
-              <view class='price'>￥89/人</view>
-              <view class='food-cate'>
-                <text class='distance'>甜品饮品</text>
-              </view>
-            </view>
-          </view>
-          <view class='fooditem li'>
-            <image class='foodPic' src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg">
-              <view class='like'>
-                <image class='likeimg' src='/images/nearbylike.png'></image>
-                <text class='number'>125</text>
-              </view>
-              <view class='sign'>
-              <view class='sign-photo'>
-                  <!-- <block wx:for="{{item.photo}}"> -->
-                    <image class='photo' src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-                    <image class='photo' src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-                    <image class='photo' src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-                  <!-- </block> -->
-                </view>
-                <text class='number'>共18人签到</text>
-              </view>
-            </image>
-            <text class='food-name'>喜茶</text>
-            <view class='price-position'>
-              <view class='price'>￥89/人</view>
-              <view class='food-cate'>
-                <text class='distance'>甜品饮品</text>
+                <text class='distance'>{{item.citylabel}}</text>
               </view>
             </view>
           </view>

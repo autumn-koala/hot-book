@@ -17,6 +17,7 @@
   border: 1rpx solid #000;
   border-radius: 10rpx;
   position: relative;
+  z-index:10;
   font-size: 24rpx;
   font-weight: 400;
   color: #000;
@@ -29,6 +30,7 @@
 }
 .search-icon{
   position: absolute;
+  z-index:100;
   width: 30rpx;
   height: 30rpx;
   top: 150rpx;
@@ -40,6 +42,7 @@
   position: absolute;
   top: 150rpx;
   right: 60rpx;
+  z-index:100;
 }
 
 /* 搜索结果 */
@@ -135,6 +138,9 @@
   font-weight: 500;
   color: #000;
   margin-bottom:15rpx; 
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .price-position{
   display: flex;
