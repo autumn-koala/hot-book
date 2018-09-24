@@ -1,4 +1,6 @@
 // pages/search/search.js
+
+const app = getApp();
 Page({
 
   /**
@@ -26,7 +28,6 @@ Page({
   },
   /*按钮搜索*/
   searchIcon : function (e) {
-    console.log(e.currentTarget);
     const item = e.currentTarget.dataset.name;
     this.doSearch(item)
   },
@@ -40,11 +41,11 @@ Page({
   /*更新历史搜索*/
   setHistory: function (item) {
     let history = this.data.historyList;
-    history.push(item)
+    if (history.length >= 8) {
+      history.pop();
+    }
+    history.unshift(item)
     history = [...new Set(history)]
-    // this.setData({
-    //   historyList: history
-    // })
     wx.setStorage({
       key: 'history',
       data: history

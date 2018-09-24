@@ -1,4 +1,6 @@
 // pages/searchResult/searchResult.js
+
+const app = getApp();
 Page({
 
   /**
@@ -7,7 +9,7 @@ Page({
   data: {
     searchContext: '',
     searchList: [],
-    userNo: '',
+    historyList: [],
     currentPage: 0,
     pageSize: 10,
     searchNone: false
@@ -21,7 +23,7 @@ Page({
         currentPage: this.data.currentPage,
         pageSize: this.data.pageSize,
         searchLabel: this.data.searchContext,
-        userNo: this.data.userNo
+        userNo: app.globalData.userInfo.userNo
       },
       success: res => {
         let list = this.data.searchList;
@@ -74,9 +76,44 @@ Page({
   },
   /*回车搜索*/
   searchBtn: function (e) {
+    this.setData({
+      searchList: []
+    })
+    this.setData({
+      currentPage: 0
+    })
     if (this.data.searchContext) {
-      this.getSearchList()
+      this.setHistory(this.data.searchContext);
+      this.getSearchList();
     }
+  },
+  /*更新历史搜索*/
+  setHistory: function (item) {
+    let history = this.data.historyList;
+    if (history.length >= 8) {
+      history.pop();
+    }
+    history.unshift(item)
+    history = [...new Set(history)]
+    // this.setData({
+    //   historyList: history
+    // })
+    wx.setStorage({
+      key: 'history',
+      data: history
+    })
+  },
+  /*清除搜索条件*/
+  clearSearch : function () {
+    this.setData({
+      searchContext: ''
+    })
+  },
+  /*跳转店铺详情*/
+  toShop: function (e) {
+    wx.redirectTo({
+      url: '/pages/storeinfo/storeinfo?shopNo=' + e.currentTarget.dataset.id,
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -85,10 +122,12 @@ Page({
     this.setData({
       searchContext: options.searchContext,
     })
+    this.getSearchList();
+    let list = [];
+    list = wx.getStorageSync('history') || [];
     this.setData({
-      userNo: wx.getStorageSync('userInfo') ? wx.getStorageSync("userInfo").userNo : ''
+      historyList: list
     })
-    this.getSearchList()
   },
 
   /**
