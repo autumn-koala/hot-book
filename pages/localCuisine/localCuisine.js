@@ -22,6 +22,37 @@ Page({
       url: '../storeinfo/storeinfo',
     })
   },
+
+  //城市美食关注
+  shopLike: function (e) {
+    console.log(1);
+    let cityName = e.currentTarget.dataset.cityName;
+    let follow = this.data.ShopDetail.follow;
+    let followCount = this.data.ShopDetail.followCount;
+    wx.request({
+      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
+      method: "post",
+      data: {
+        "cityName": this.data.cityName,
+        "userNo": app.globalData.userInfo.userNo
+      },
+      success: res => {
+        
+        // if (this.data.ShopDetail.follow) {
+        //   this.setData({
+        //     [follow]: !this.data.ShopDetail.follow,
+        //     [followCount]: this.data.ShopDetail.followCount - 1
+        //   })
+        // } else {
+        //   this.setData({
+        //     [follow]: !this.data.ShopDetail.follow,
+        //     [followCount]: this.data.ShopDetail.followCount + 1
+        //   })
+        // }
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

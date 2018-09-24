@@ -77,7 +77,7 @@
     </view>
     <view class="sign-number">共{{ShopDetail.shopAutographCount}}人签到</view>
   </view>
-  <button class='sign-btn'>签到</button>
+  <button class='sign-btn' bindtap='shopAutograph'>{{ShopDetail.autograph ?'已签到':'签到'}}</button>
 </view>
 
 <!-- 推荐菜 -->

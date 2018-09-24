@@ -67,7 +67,7 @@
               </view>
             </block>
             <block wx:else>
-              <view class='like' catchtap='shopLike' data-shopNo="{{item.shopNo}}"  data-index='{{index}}'>
+              <view class='like' catchtap='shopLike' data-index='{{index}}'>
                 <text class='hit hot'>{{item.followCount}}</text>
                 <image src="/images/nearbylike-s.png"></image>
               </view>

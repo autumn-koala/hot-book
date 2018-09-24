@@ -20,6 +20,19 @@ Page({
     userNo: null
   },
 
+  //获取用户位置信息
+  // getPosition: function() {
+  //   var that = this;
+  //   wx.getLocation({
+  //     success: function(res) {
+  //       console.log(res)
+  //       that.setData({
+  //         latitude: res.latitude,
+  //         longitude: res.longitude
+  //       })
+  //     },
+  //   })
+  // },
 
 
 
@@ -31,17 +44,6 @@ Page({
     }, 150)
 
   },
-  // tolocalCuisine: function(e) {
-  //   console.log(e);
-  //   this.setData({
-  //     cityName: e.currentTarget.dataset.cityName
-  //   })
-  //   setTimeout(() => {
-  //     wx.navigateTo({
-  //       url: '../localCuisine/localCuisine?cityName='+this.data.cityName,
-  //     })
-  //   }, 150)
-  // },
 
   tostoreinfo: function() {
     setTimeout(() => {
@@ -54,44 +56,65 @@ Page({
 
   /**店铺关注 */
   shopLike: function(e) {
-    // let shopNo = e.currentTarget.dataset.shopNo;
     let index = e.currentTarget.dataset.index;
     let follow = `ShopList[${index}].follow`;
     let followCount = `ShopList[${index}].followCount`;
     wx.request({
       url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
-      method:"post",
-      data:{
-        "shopNo":this.data.ShopList[index].shopNo,
+      method: "post",
+      data: {
+        "shopNo": this.data.ShopList[index].shopNo,
+        "followFlag":!this.data.ShopList[index].follow,
         "userNo": app.globalData.userInfo.userNo
       },
-      success:res=>{
-        if (this.data.ShopList[index].follow){
+      success: res => {
+        if (this.data.ShopList[index].follow) {
           this.setData({
-            [follow]:!this.data.ShopList[index].follow,
-            [followCount]: this.data.ShopList[index].followCount-1
+            [follow]: !this.data.ShopList[index].follow,
+            [followCount]: this.data.ShopList[index].followCount - 1
           })
-        }else{
+        } else {
           this.setData({
             [follow]: !this.data.ShopList[index].follow,
             [followCount]: this.data.ShopList[index].followCount + 1
           })
         }
+        // this.getShopListAll();
       }
     })
   },
 
 
+  //保存用户信息
+  saveUserInfo: function() {
+    util.request('/comm/saveUserInfo', {
+        "city": app.globalData.userInfo.city,
+        "country": app.globalData.userInfo.country,
+        "nickname": app.globalData.userInfo.nickName,
+        "productCode": "600009",
+        "province": app.globalData.userInfo.province,
+        "userAvatarUrl": app.globalData.userInfo.avatarUrl,
+        "userNo": app.globalData.userInfo.userNo,
+        "userSex": app.globalData.userInfo.gender,
+        "wxOpenId": app.globalData.userInfo.openId
+      },
+      function(res) {
+        //
+      })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var that = this;
-    var userNo = wx.getStorageSync("userInfo['userNo']"); //wx.getStorageSync(key)，获取本地缓存
+    this.saveUserInfo();
     this.setData({
-      userNo: userNo
+      userNo: app.globalData.userInfo.userNo
     })
-
+    // this.getPosition();
+    wx.request({
+      url: '',
+    })
   },
 
   /**
@@ -101,12 +124,8 @@ Page({
 
   },
 
-  getHomePage: function() {
-    //获取首页全部店铺列表
-    wx.showLoading({
-      title: 'Loading',
-      mask: true
-    })
+  //获取首页全部店铺列表
+  getShopListAll: function() {
     wx.request({
       url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryShopList',
       method: "post",
@@ -122,7 +141,9 @@ Page({
           })
       }
     })
-    //获取首页轮播图
+  },
+  //获取首页轮播图
+  getPageHomeBanner: function() {
     wx.request({
       url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryPageHomeBanner',
       success: res => {
@@ -132,10 +153,9 @@ Page({
         })
       }
     })
-    //获取首页城市分类
-    // wx.showLoading({
-    //   title: 'Loading',
-    // })
+  },
+  //获取首页城市分类
+  getCityClassifyList: function() {
     wx.request({
       url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryCityClassifyList',
       success: res => {
@@ -145,19 +165,20 @@ Page({
         })
       }
     })
-
   },
+
 
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    // wx.showLoading({
-    //   title: 'Loading',
-    // })
-    this.getHomePage();
-    // wx.hideLoading();
+    
+    this.getShopListAll();
+
+    this.getPageHomeBanner();
+
+    this.getCityClassifyList();
   },
 
   /**

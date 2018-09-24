@@ -73,7 +73,6 @@ Page({
     //获取用户信息
     wx.getLocation({
       success: function(res) {
-
         latitude: res.latitude;
         longitude: res.longitude;
       },
