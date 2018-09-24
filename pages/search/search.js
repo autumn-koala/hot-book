@@ -86,7 +86,7 @@ Page({
   onLoad: function (options) {
     this.getHotList();
     let list = [];
-    list = wx.getStorageSync('history')
+    list = wx.getStorageSync('history') || [];
     this.setData({
       historyList: list
     })
