@@ -14,7 +14,7 @@
     <view class='nearbyfood'>
       <view class='foodlist ul'>
     <block wx:for="{{cityShopList}}" wx:key="{{index}}">
-      <view class='fooditem li' bindtap='tostoreinfo'>
+      <view class='fooditem li' bindtap='tostoreinfo' data-id='{{item.shopNo}}' bindtap='toShop'>
         <image class='foodPic li-pic' style="background:url('{{item.shopBanner}}') no-repeat left top / 100% 100%">
           <image src='/images/shop_dz.png' class='li-pic-dz'></image>
           <view class='li-like'>

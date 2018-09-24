@@ -10,7 +10,7 @@ Page({
     searchContext: '',
     searchList: [],
     historyList: [],
-    currentPage: 0,
+    currentPage: 1,
     pageSize: 10,
     searchNone: false
   },
@@ -26,22 +26,24 @@ Page({
         userNo: app.globalData.userInfo.userNo
       },
       success: res => {
-        let list = this.data.searchList;
-        res.data.data.searchShopList.map(item => {
-          list.push(item)
-        })
-        this.setData({
-          searchList: list
-        })
-        if (res.data.data.searchShopList.length == this.data.pageSize && this.data.searchList.length < res.data.data.shopCount) {
+        if (res.data.data) {
+          let list = this.data.searchList;
+          res.data.data.searchShopList.map(item => {
+            list.push(item)
+          })
           this.setData({
-            currentPage: this.data.currentPage + 1
+            searchList: list
           })
-        } else {
-          wx.showToast({
-            title: '没有更多店铺了',
-            icon: 'none'
-          })
+          if (res.data.data.searchShopList.length == this.data.pageSize && this.data.searchList.length < res.data.data.shopCount) {
+            this.setData({
+              currentPage: this.data.currentPage + 1
+            })
+          } else {
+            wx.showToast({
+              title: '没有更多店铺了',
+              icon: 'none'
+            })
+          }
         }
         if (this.data.searchList.length === 0) {
           this.setData({

@@ -1,4 +1,6 @@
 // pages/myfoucs/myfoucs.js
+const app = getApp();
+
 Page({
 
   /**
@@ -7,88 +9,12 @@ Page({
   data: {
     select: true,
     select1: false,
-    cityShopList: [
-      {
-        "shopNo": 518,
-        "shopName": "国贸",
-        "shopBanner": "http://ci.xiaohongshu.com/3a62f857-e980-59e8-8d3b-0a1ea4c8948e",
-        "shopClass": "自助餐",
-        "shopCity": "北京",
-        "shopAutographCount": 861
-      },
-      {
-        "shopNo": 1003,
-        "shopName": "奈雪の茶(西直门凯徳店)",
-        "shopBanner": "http://ci.xiaohongshu.com/13a0bd25-060c-5e11-b279-ccafac1360db",
-        "shopClass": "甜品饮品",
-        "shopCity": "北京",
-        "shopAutographCount": 618
-      },
-      {
-        "shopNo": 1000,
-        "shopName": "page one咖啡厅",
-        "shopBanner": "http://ci.xiaohongshu.com/de9bf8cf-33d1-4b61-afee-3d08ca227551",
-        "shopClass": "甜品饮品",
-        "shopCity": "北京",
-        "shopAutographCount": 933
-      },
-      {
-        "shopNo": 1018,
-        "shopName": "绿季法式甜品",
-        "shopBanner": "http://ci.xiaohongshu.com/74890cf4-84dc-436f-a5b2-7cabe921c1bb",
-        "shopClass": "甜品饮品",
-        "shopCity": "北京",
-        "shopAutographCount": 847
-      },
-      {
-        "shopNo": 467,
-        "shopName": "The Rug(三里屯店)",
-        "shopBanner": "http://ci.xiaohongshu.com/3918ce04-8a0f-44a8-aa49-e5d6790fcb55",
-        "shopClass": "西餐",
-        "shopCity": "北京",
-        "shopAutographCount": 738
-      },
-      {
-        "shopNo": 939,
-        "shopName": "伊豆野菜村(顺义店)",
-        "shopBanner": "http://ci.xiaohongshu.com/771a7506-24f3-4ab5-9498-701ffe64d53e",
-        "shopClass": "日本料理",
-        "shopCity": "北京",
-        "shopAutographCount": 1138
-      },
-      {
-        "shopNo": 771,
-        "shopName": "方糖",
-        "shopBanner": "http://ci.xiaohongshu.com/f712f839-6bb8-4a5e-979a-edf659f5cff4",
-        "shopClass": "甜品饮品",
-        "shopCity": "北京",
-        "shopAutographCount": 1274
-      },
-      {
-        "shopNo": 484,
-        "shopName": "俏凤凰",
-        "shopBanner": "http://ci.xiaohongshu.com/ca2051b3-d221-5984-adb9-94133ce5b8ed",
-        "shopClass": "云贵菜",
-        "shopCity": "北京",
-        "shopAutographCount": 877
-      },
-      {
-        "shopNo": 483,
-        "shopName": "火烧云傣家菜馆(京广桥店)",
-        "shopBanner": "http://ci.xiaohongshu.com/3f572402-9ad0-4c7d-9035-1abf26f87a58",
-        "shopClass": "云贵菜",
-        "shopCity": "北京",
-        "shopAutographCount": 1284
-      },
-      {
-        "shopNo": 683,
-        "shopName": "栗记仙豆糕",
-        "shopBanner": "http://ci.xiaohongshu.com/ec2cd648-b6b7-445d-a466-cea187e20805",
-        "shopClass": "甜品饮品",
-        "shopCity": "北京",
-        "shopAutographCount": 1201
-      }
-    ]
+    cityShopList: [],
+    cityFoodList: [],
+    pageSize: 10,
+    currentPage: 1,
+    isEmpty: false,
+    noMore: false
   },
   back: function () {
     wx.navigateBack({
@@ -99,16 +25,133 @@ Page({
   toggleTable: function() {
     this.setData({
       select: !this.data.select,
-      select1: !this.data.select1
+      select1: !this.data.select1,
+      currentPage: 1,
+      noMore: false
+    })
+    this.data.select && this.getMyFocusShop();
+    this.data.select1 && this.getMyFocusFood();
+  },
+  /*获取店铺关注列表*/
+  getMyFocusShop : function () {
+    if (this.data.noMore) {
+      return;
+    }
+    wx.request({
+      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryShopFollowList',
+      method: 'post',
+      data: {
+        currentPage: this.data.currentPage,
+        pageSize: this.data.pageSize,
+        userNo: app.globalData.userInfo.userNo
+      },
+      success: res => {
+        let list = this.data.cityShopList;
+        if (res.data.data) {
+          res.data.data.map(item => {
+            list.push(item)
+          })
+          this.setData({
+            cityShopList: list
+          })
+          this.setData({
+            currentPage: this.data.currentPage + 1
+          })
+        } else if (list.length > 0) {
+          wx.showToast({
+            title: '没有更多店铺了',
+            icon: 'none'
+          })
+          this.setData({
+            noMore: true
+          })
+        } else {
+          this.setData({
+            isEmpty: true,
+          })
+        }
+      },
+      fail: res => {
+        if (this.data.cityShopList.length === 0) {
+          this.setData({
+            isEmpty: true
+          })
+        } else {
+          this.setData({
+            isEmpty: false
+          })
+        }
+        wx.showToast({
+          title: '请检查网络',
+          icon: 'none'
+        })
+      }
     })
   },
-
-
+  /*获取美食关注列表*/
+  getMyFocusFood : function () {
+    if (this.data.noMore) {
+      return;
+    }
+    wx.request({
+      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryCityFoodFollowList',
+      method: 'post',
+      data: {
+        currentPage: this.data.currentPage,
+        pageSize: this.data.pageSize,
+        userNo: app.global.userInfo.userNo
+      },
+      success: res => {
+        let list = this.data.cityFoodList;
+        if (res.data.data) {
+          res.data.data.map(item => {
+            list.push(item)
+          })
+          this.setData({
+            cityFoodList: list
+          })
+          this.setData({
+            currentPage: this.data.currentPage + 1
+          })
+        } else if (list.length > 0) {
+          wx.showToast({
+            title: '没有更多美食了',
+            icon: 'none'
+          })
+        } else {
+          this.setData({
+            isEmpty: true
+          })
+        }
+      },
+      fail: res => {
+        if (this.data.cityFoodList.length === 0) {
+          this.setData({
+            isEmpty: true
+          })
+        } else {
+          this.setData({
+            isEmpty: false
+          })
+        }
+        wx.showToast({
+          title: '请检查网络',
+          icon: 'none'
+        })
+      }
+    })
+  },
+  /*跳转店铺详情*/
+  toShop: function (e) {
+    wx.redirectTo({
+      url: '/pages/storeinfo/storeinfo?shopNo=' + e.currentTarget.dataset.id,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getMyFocusShop();
   },
 
   /**
@@ -150,7 +193,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    this.data.select && this.getMyFocusShop()
+    this.data.select1 && this.getMyFocusFood()
   },
 
   /**
