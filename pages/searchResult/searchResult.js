@@ -108,6 +108,9 @@ Page({
     this.setData({
       searchContext: ''
     })
+    wx.redirectTo({
+      url: '/pages/search/search',
+    })
   },
   /*跳转店铺详情*/
   toShop: function (e) {
@@ -162,14 +165,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getSearchList();
+    
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.getSearchList();
   },
 
   /**

@@ -24,35 +24,40 @@ Page({
   },
 
   //城市美食关注
-  shopLike: function (e) {
-    console.log(1);
-    let cityName = e.currentTarget.dataset.cityName;
-    let follow = this.data.ShopDetail.follow;
-    let followCount = this.data.ShopDetail.followCount;
+  cityFollow: function (e) {
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
+      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/cityFoodFollow',
       method: "post",
       data: {
-        "cityName": this.data.cityName,
+        "cityName": this.data.CityFoodDetail.cityName,
+        "followFlag": !this.data.CityFoodDetail.follow,
         "userNo": app.globalData.userInfo.userNo
       },
       success: res => {
-        
-        // if (this.data.ShopDetail.follow) {
-        //   this.setData({
-        //     [follow]: !this.data.ShopDetail.follow,
-        //     [followCount]: this.data.ShopDetail.followCount - 1
-        //   })
-        // } else {
-        //   this.setData({
-        //     [follow]: !this.data.ShopDetail.follow,
-        //     [followCount]: this.data.ShopDetail.followCount + 1
-        //   })
-        // }
+        this.getCityFoodDetail();
       }
     })
   },
-
+//获取地方美食明细
+getCityFoodDetail:function(){
+  wx.request({
+    url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryCityFoodDetail',
+    method: "post",
+    data: {
+      "cityName": this.data.cityName,
+      "currentPage": this.data.p,
+      "pageSize": 4,
+      "userNo": app.globalData.userInfo.userNo
+    },
+    success: res => {
+      wx.hideLoading();
+      console.log(res.data);
+      this.setData({
+        CityFoodDetail: res.data.data
+      })
+    }
+  })
+},
   /**
    * 生命周期函数--监听页面加载
    */
@@ -80,23 +85,7 @@ Page({
       title: 'Loading',
     })
     //获取地方美食明细
-    wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryCityFoodDetail',
-      method: "post",
-      data: {
-        "cityName": this.data.cityName,
-        "currentPage": this.data.p,
-        "pageSize": 4,
-        "userNo": app.globalData.userInfo.userNo
-      },
-      success: res => {
-        wx.hideLoading();
-        console.log(res.data);
-        this.setData({
-          CityFoodDetail: res.data.data
-        })
-      }
-    })
+    this.getCityFoodDetail();
 
     //获取地方相关餐厅列表
     wx.request({

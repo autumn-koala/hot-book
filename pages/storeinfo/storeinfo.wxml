@@ -20,7 +20,7 @@
         <button class='cuisin_share' open-type='share'>
           <image class='share-icon' src='/images/share-w.png' /> 分享
         </button>
-        <button class='foucs' catchtap='shopLike' data-shopNo="{{ShopDetail.shopNo}}">{{ShopDetail.follow ? '已关注':'关注'}}</button>
+        <button class='foucs' catchtap='shopLike'>{{ShopDetail.follow ? '已关注':'关注'}}</button>
       </view>
     </view>
   </view>

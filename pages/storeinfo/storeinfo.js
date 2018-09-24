@@ -43,10 +43,6 @@ Page({
   },
   //店铺关注
   shopLike:function(e){
-    console.log(1);
-    // let shopNo = e.currentTarget.dataset.shopNo;
-    let follow = !this.data.ShopDetail.follow;
-    let followCount = this.data.ShopDetail.followCount;
     wx.request({
       url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
       method:"post",
@@ -56,17 +52,7 @@ Page({
         "userNo": app.globalData.userInfo.userNo
       },
       success:res=>{
-        if(this.data.ShopDetail.follow){
-          this.setData({
-            [follow]:!this.data.ShopDetail.follow,
-            [followCount]:this.data.ShopDetail.followCount-1
-          })
-        }else{
-          this.setData({
-            [follow]: !this.data.ShopDetail.follow,
-            [followCount]: this.data.ShopDetail.followCount + 1
-          })
-        }
+        this.getShopDetail();
       }
     })
   },
