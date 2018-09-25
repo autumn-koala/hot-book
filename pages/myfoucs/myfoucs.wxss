@@ -215,7 +215,7 @@
   align-items: center;
 }
 .storePic{
-  width: 150rpx;
+  width: 263rpx;
   height: 150rpx;
   margin-right: 30rpx;
 }
@@ -242,4 +242,25 @@
     padding: 15rpx 20rpx;
     border: 1rpx solid #acacac;
     border-radius: 5rpx;
+}
+
+
+
+/* 没有关注 */
+.focusNone{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.focusNone-icon{
+  width: 167rpx;
+  height: 166rpx;
+  margin-top: 382rpx;
+}
+.focusNone-text{
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #bdbdbd;
+  margin-top: 40rpx;
 }

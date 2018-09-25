@@ -10,65 +10,98 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shopNo:null,
-    p:1
+    shopNo: null,
+    p: 1
   },
 
+  //获取用户手机号
+  getPhoneNumber: function(e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
+      wx.showModal({
+        title: '提示',
+        showCancel: false,
+        content: '未授权',
+        success: function(res) {}
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        showCancel: false,
+        content: '同意授权',
+        success: function(res) {}
+      })
+    }
+  },
 
-  back:function(){
+  //跳转店铺详情
+  tostoreinfo: function(e) {
+    console.log(e);
+    this.setData({
+      shopClass: e.currentTarget.dataset.shopclass,
+      shopCity: e.currentTarget.dataset.shopcity
+    })
+    wx.navigateTo({
+      url: '../storeinfo/storeinfo?shopNo=' + e.currentTarget.dataset.shopno + '&shopClass=' + e.currentTarget.dataset.shopclass + '&shopCity=' + e.currentTarget.dataset.shopcity,
+    })
+  },
+
+  back: function() {
     wx.navigateBack({
       //
     })
   },
   //获取地址
-  getPosition:function(e){
+  getPosition: function(e) {
     this.setData({
       latitude: parseFloat(e.currentTarget.dataset.latitude),
-      longitude:parseFloat(e.currentTarget.dataset.longitude),
+      longitude: parseFloat(e.currentTarget.dataset.longitude),
     })
     wx.openLocation({
       latitude: this.data.latitude,
       longitude: this.data.longitude,
-      name:this.data.ShopDetail.shopName,
-      address:this.data.ShopDetail.shopAddress,
-      scale:14
+      name: this.data.ShopDetail.shopName,
+      address: this.data.ShopDetail.shopAddress,
+      scale: 14
     })
     // wx.getLocation({
     //   type: 'gcj02', 
     //   success: function(res) {
-        
+
     //   },
     // })
-    
+
   },
   //店铺关注
-  shopLike:function(e){
+  shopLike: function(e) {
     wx.request({
       url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
-      method:"post",
-      data:{
-        "shopNo":this.data.shopNo,
+      method: "post",
+      data: {
+        "shopNo": this.data.shopNo,
         "followFlag": !this.data.ShopDetail.follow,
         "userNo": app.globalData.userInfo.userNo
       },
-      success:res=>{
+      success: res => {
         this.getShopDetail();
       }
     })
   },
   /**店铺签到 */
-  shopAutograph:function(e){
+  shopAutograph: function(e) {
     let autograph = `ShopDetail.autograph`
     wx.request({
       url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopAutograph',
-      method:"post",
-      data:{
+      method: "post",
+      data: {
         "shopNo": this.data.shopNo,
         "userNo": app.globalData.userInfo.userNo
       },
-      success:res=>{
+      success: res => {
         this.setData({
-          [autograph]:true
+          [autograph]: true
         })
         this.getShopDetail();
       }
@@ -76,7 +109,7 @@ Page({
   },
 
   //获取店铺详情
-  getShopDetail:function(){
+  getShopDetail: function() {
     wx.request({
       url: 'http://xcx-dev.qiyuchuhai.com//xcx/red_shop/queryShopDetail',
       method: "post",
@@ -93,7 +126,7 @@ Page({
   },
 
   //获取可能喜欢列表
-  getMayLikeList:function(){
+  getMayLikeList: function() {
     wx.request({
       url: 'http://xcx-dev.qiyuchuhai.com//xcx/red_shop/queryShopList',
       method: "post",
@@ -113,14 +146,43 @@ Page({
       }
     })
   },
+  /**店铺关注(可能喜欢) */
+  MayLikeListshopLike: function(e) {
+    let index = e.currentTarget.dataset.index;
+    let follow = `mayLikeList[${index}].follow`;
+    let followCount = `mayLikeList[${index}].followCount`;
+    wx.request({
+      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
+      method: "post",
+      data: {
+        "shopNo": this.data.mayLikeList[index].shopNo,
+        "followFlag": !this.data.mayLikeList[index].follow,
+        "userNo": app.globalData.userInfo.userNo
+      },
+      success: res => {
+        if (this.data.mayLikeList[index].follow) {
+          this.setData({
+            [follow]: !this.data.mayLikeList[index].follow,
+            [followCount]: this.data.mayLikeList[index].followCount - 1
+          })
+        } else {
+          this.setData({
+            [follow]: !this.data.mayLikeList[index].follow,
+            [followCount]: this.data.mayLikeList[index].followCount + 1
+          })
+        }
+        // this.getShopListAll();
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
-      shopNo:options.shopNo,
-      shopCity:options.shopCity,
+      shopNo: options.shopNo,
+      shopCity: options.shopCity,
       shopClass: options.shopClass
     })
   },
@@ -128,50 +190,50 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     wx.showLoading({
       title: 'Loading',
     })
     this.getShopDetail();
-   
+
 
     this.getMayLikeList();
 
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     this.setData({
       p: this.data.p + 1,
       wait: true
@@ -187,9 +249,17 @@ Page({
         "shopClass": this.data.shopClass
       },
       success: res => {
-        this.setData({
-          mayLikeList: this.data.mayLikeList.concat(res.data.data)
-        })
+        if (res.data.data) {
+          this.setData({
+            mayLikeList: this.data.mayLikeList.concat(res.data.data)
+          })
+        } else {
+          wx.showToast({
+            title: '没有更多了...',
+            icon: "none"
+          })
+        }
+
       }
     })
   },
@@ -197,7 +267,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

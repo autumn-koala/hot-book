@@ -7,13 +7,48 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isShowBox:false
   },
 
+  //是否显示盒子
+  isShowBox:function(){
+    wx.request({
+      url: 'http://xcx-dev.qiyuchuhai.com/xcx/box/isShowBox',
+      method:"post",
+      data:{
+        "productCode": "600009"
+      },
+      success:res=>{
+        if(res.data.data == '0'){
+          this.setData({
+            isShowBox:false
+          })
+        } else if(res.data.data == '1'){
+          this.setData({
+            isShowBox: true
+          })
+        }
+      }
+    })
+  },
+  //盒子列表
+  getBoxList: function () {
+    wx.request({
+      url: 'http://xcx-dev.qiyuchuhai.com/xcx/box/queryBoxList',
+      method: "post",
+      data: {
+        "productCode": "600009"
+      },
+      success: res => {
+        
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.isShowBox();
     this.setData({
       avatarUrl: app.globalData.userInfo.avatarUrl,
       nickName: app.globalData.userInfo.nickName

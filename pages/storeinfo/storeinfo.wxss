@@ -167,13 +167,17 @@
 }
 
 .address {
+  width: 450rpx;
+  height: 33rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 26rpx;
   display:flex;
   align-items:center;
-
 }
 
-.add-detail {
+/* .add-detail {
   width: 400rpx;
   height: 33rpx;
   overflow: hidden;
@@ -181,7 +185,7 @@
   white-space: nowrap;
   color: #424242;
   display: inline-block;
-}
+} */
 
 .address-right {
   display: flex;
@@ -275,6 +279,9 @@
   background: #fff;
   border: 1rpx solid #f55;
   margin: 0;
+}
+.sign-btn.none{
+  border: none;
 }
 
 /* 推荐菜 */
@@ -436,6 +443,9 @@
   font-size: 20rpx;
   font-weight: 400;
   color: #fff;
+}
+.like-number.hit{
+  color: #f55;
 }
 
 .li-sign {

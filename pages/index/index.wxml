@@ -28,7 +28,7 @@
       <view class='cate-item'>
         <navigator url="/pages/localCuisine/localCuisine?cityName={{item.cityName}}">
           <view class='cate-box'>
-            <image src="{{item.cityImgUrl}}" class="cate-image">
+            <image style="background:url('{{item.cityImgUrl}}') no-repeat left top / 100% auto" class="cate-image">
               <text class="number">{{item.cityAutographSumCount}}人已签到</text>
             </image>
             <text class="position">{{item.cityLabel}}</text>

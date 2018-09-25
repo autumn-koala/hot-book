@@ -22,10 +22,10 @@
 <view class='cate'>
   <text class="cate-title">相关餐厅</text>
   <scroll-view class="cate-scroll" scroll-x>
-    <block wx:for="{{cityShopList}}">
-      <view class='cate-item' bindtap='tostoreinfo'>
+    <block wx:for="{{cityShopList}}" wx:key="{{index}}">
+      <view class='cate-item' bindtap='tostoreinfo' data-shopNo='{{item.shopNo}}' data-shopClass="{{item.shopClass}}" data-shopCity="{{item.shopCity}}">
         <view class='cate-box'>
-          <image style="background('{{item.shopBanner}}') no-repeat left top/100% auto'" class="cate-image">
+          <image style="background:url('{{item.shopBanner}}') no-repeat left top/100% auto" class="cate-image">
             <text class="number">{{item.shopAutographCount}}人已签到</text>
           </image>
           <text class="storename">{{item.shopName}}</text>
@@ -49,12 +49,20 @@
   <view class='foodlist ul'>
     <block wx:for="{{ShopList}}" wx:key="{{index}}">
       <view class='fooditem li' bindtap='tostoreinfo'>
-        <image class='foodPic li-pic' style="background:url('{{item.shopBanner}}') no-repeat left top / 100% 100%">
+        <image class='foodPic li-pic' bindtap='tostoreinfo' data-shopNo='{{item.shopNo}}' data-shopClass="{{item.shopClass}}" data-shopCity="{{item.shopCity}}" style="background:url('{{item.shopBanner}}') no-repeat left top / 100% 100%">
           <image src='/images/shop_dz.png' class='li-pic-dz'></image>
-          <view class='li-like'>
-            <image class='likeimg' src='/images/nearbylike.png'></image>
-            <text class='like-number'>{{item.followCount}}</text>
-          </view>
+          <block wx:if="{{!item.follow}}">
+            <view class='li-like' catchtap='shopLike' data-index='{{index}}'>
+              <image class='likeimg' src='/images/nearbylike.png'></image>
+              <text class='like-number'>{{item.followCount}}</text>
+            </view>
+          </block>
+          <block wx:else>
+            <view class='li-like' catchtap='shopLike' data-index='{{index}}'>
+              <image class='likeimg' src='/images/nearbylike-s.png'></image>
+              <text class='like-number hit'>{{item.followCount}}</text>
+            </view>
+          </block>
           <view class='li-sign'>
             <view class='li-sign-photo'>
               <block wx:for="{{item.userAvatarUrlList}}" wx:key="{{index}}">

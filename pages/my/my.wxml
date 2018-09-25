@@ -21,13 +21,13 @@
     <image class='more' src="/images/more.png"></image>
   </navigator>
 
-  <block wx:if="{{false}}">
-    <navigator url="/pages/application/application" class='li' hover-class="none">
+  <block wx:if="{{isShowBox}}">
+    <view bindtap='getBoxList' class='li' hover-class="none">
       <view class='icon-title'>
         <image class='icon' src="/images/application.png"></image>
         <text class='title'>应用盒子</text>
       </view>
       <image class='more' src="/images/more.png"></image>
-    </navigator>
+    </view>
   </block>
 </view>

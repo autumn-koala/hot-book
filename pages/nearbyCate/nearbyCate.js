@@ -10,15 +10,46 @@ Page({
   data: {
     p: 1
   },
-
+  shopLike: function (e) {
+    let index = e.currentTarget.dataset.index;
+    let follow = `NearbyShopList[${index}].follow`;
+    let followCount = `NearbyShopList[${index}].followCount`;
+    wx.request({
+      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
+      method: "post",
+      data: {
+        "shopNo": this.data.NearbyShopList[index].shopNo,
+        "followFlag": !this.data.NearbyShopList[index].follow,
+        "userNo": app.globalData.userInfo.userNo
+      },
+      success: res => {
+        if (this.data.NearbyShopList[index].follow) {
+          this.setData({
+            [follow]: !this.data.NearbyShopList[index].follow,
+            [followCount]: this.data.NearbyShopList[index].followCount - 1
+          })
+        } else {
+          this.setData({
+            [follow]: !this.data.NearbyShopList[index].follow,
+            [followCount]: this.data.NearbyShopList[index].followCount + 1
+          })
+        }
+        // this.getShopListAll();
+      }
+    })
+  },
   back: function() {
     wx.navigateBack({
       //
     })
   },
-  tostoreinfo: function() {
+  tostoreinfo: function (e) {
+    console.log(e);
+    this.setData({
+      shopClass: e.currentTarget.dataset.shopclass,
+    })
     wx.navigateTo({
-      url: '../storeinfo/storeinfo',
+      url: '../storeinfo/storeinfo?shopNo=' + e.currentTarget.dataset.shopno + '&shopClass=' + e.currentTarget.dataset.shopclass ,
     })
   },
 

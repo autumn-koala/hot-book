@@ -14,7 +14,7 @@
         <block wx:else>
           <view class='number'>到店咨询</view>
         </block>
-        <view class='cuisin-cate'>{{shopClass}}</view>
+        <view class='cuisin-cate'>{{ShopDetail.shopClass}}</view>
       </view>
       <view class='btn_group'>
         <button class='cuisin_share' open-type='share'>
@@ -77,7 +77,12 @@
     </view>
     <view class="sign-number">共{{ShopDetail.shopAutographCount}}人签到</view>
   </view>
-  <button class='sign-btn' bindtap='shopAutograph'>{{ShopDetail.autograph ?'已签到':'签到'}}</button>
+  <block wx:if="{{!ShopDetail.autograph}}">
+    <button class='sign-btn' bindtap='shopAutograph' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">签到</button>
+  </block>
+  <block wx:else>
+    <button class='sign-btn none' disabled>已签到</button>
+  </block>
 </view>
 
 <!-- 推荐菜 -->
@@ -108,13 +113,21 @@
   </view>
   <view class='foodlist ul'>
     <block wx:for="{{mayLikeList}}" wx:key="{{index}}">
-      <view class='fooditem li' bindtap='tostoreinfo'>
-        <image class='foodPic li-pic' style="background:url('{{item.shopBanner}}') no-repeat left top / 100% 100%">
+      <view class='fooditem li' bindtap='tostoreinfo' data-shopNo='{{item.shopNo}}' data-shopClass="{{item.shopClass}}" data-shopCity="{{item.shopCity}}">
+        <image class='foodPic li-pic' style="background:url('{{item.shopBanner}}') no-repeat left top / 100% auto">
           <image src='/images/shop_dz.png' class='li-pic-dz'></image>
-          <view class='li-like'>
-            <image class='likeimg' src='/images/nearbylike.png'></image>
-            <text class='like-number'>{{item.followCount}}</text>
-          </view>
+          <block wx:if="{{!item.follow}}">
+            <view class='li-like' catchtap='MayLikeListshopLike' data-index='{{index}}'>
+              <image class='likeimg' src='/images/nearbylike.png'></image>
+              <text class='like-number'>{{item.followCount}}</text>
+            </view>
+          </block>
+          <block wx:else>
+            <view class='li-like' catchtap='MayLikeListshopLike' data-index='{{index}}'>
+              <image class='likeimg' src='/images/nearbylike-s.png'></image>
+              <text class='like-number hit'>{{item.followCount}}</text>
+            </view>
+          </block>
           <view class='li-sign'>
             <view class='li-sign-photo'>
               <block wx:for="{{item.userAvatarUrlList}}" wx:key="{{index}}">
@@ -133,7 +146,7 @@
             <view class='price'>价格：到店咨询</view>
           </block>
           <view class='food-cate'>
-            <text class='distance'>{{shopClass}}</text>
+            <text class='distance'>{{item.shopClass}}</text>
           </view>
         </view>
       </view>

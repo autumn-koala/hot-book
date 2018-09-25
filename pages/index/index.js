@@ -112,9 +112,9 @@ Page({
       userNo: app.globalData.userInfo.userNo
     })
     // this.getPosition();
-    wx.request({
-      url: '',
-    })
+    // wx.request({
+    //   url: '',
+    // })
   },
 
   /**
@@ -199,7 +199,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    this.getHomePage();
+    this.getShopListAll();
+
+    this.getPageHomeBanner();
+
+    this.getCityClassifyList();
   },
 
   /**

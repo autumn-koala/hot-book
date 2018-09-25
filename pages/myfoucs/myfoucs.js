@@ -99,7 +99,7 @@ Page({
       data: {
         currentPage: this.data.currentPage,
         pageSize: this.data.pageSize,
-        userNo: app.global.userInfo.userNo
+        userNo: app.globalData.userInfo.userNo
       },
       success: res => {
         let list = this.data.cityFoodList;
@@ -111,7 +111,7 @@ Page({
             cityFoodList: list
           })
           this.setData({
-            currentPage: this.data.currentPage + 1
+            currentPage: this.data.currentPage + 1 
           })
         } else if (list.length > 0) {
           wx.showToast({
