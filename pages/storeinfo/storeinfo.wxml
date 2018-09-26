@@ -80,7 +80,7 @@
     <view class="sign-number">共{{ShopDetail.shopAutographCount}}人签到</view>
   </view>
   <block wx:if="{{!ShopDetail.autograph}}">
-    <button class='sign-btn' bindtap='shopAutograph' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">签到</button>
+    <button class='sign-btn' bindtap='shopAutograph' >签到</button>
   </block>
   <block wx:else>
     <button class='sign-btn none' disabled>已签到</button>

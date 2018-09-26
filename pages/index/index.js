@@ -123,6 +123,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.getHomePage();
     // this.saveUserInfo();
     // this.setData({
     //   userNo: app.globalData.userInfo.userNo
@@ -195,7 +196,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getHomePage();
+    this.getShopListAll();
+
+    this.getPageHomeBanner();
+
+    this.getCityClassifyList();
+    // this.getHomePage();
   },
 
   /**
@@ -216,7 +222,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    this.getHomePage();
+    // this.getHomePage();
   },
 
   /**
@@ -252,7 +258,13 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
+  onShareAppMessage: function(res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '打卡美食店，签到我的美食'
+    }
   }
 })

@@ -43,28 +43,28 @@ Page({
   },
 
   //获取用户手机号
-  getPhoneNumber: function(e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
-      wx.showModal({
-        title: '提示',
-        showCancel: false,
-        content: '未授权',
-        success: function(res) {}
-      })
-    } else {
-      wx.showModal({
-        title: '提示',
-        showCancel: false,
-        content: '同意授权',
-        success: function(res) {
-        }
-      })
+  // getPhoneNumber: function(e) {
+  //   console.log(e.detail.errMsg)
+  //   console.log(e.detail.iv)
+  //   console.log(e.detail.encryptedData)
+  //   if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
+  //     wx.showModal({
+  //       title: '提示',
+  //       showCancel: false,
+  //       content: '未授权',
+  //       success: function(res) {}
+  //     })
+  //   } else {
+  //     wx.showModal({
+  //       title: '提示',
+  //       showCancel: false,
+  //       content: '同意授权',
+  //       success: function(res) {
+  //       }
+  //     })
       
-    }
-  },
+  //   }
+  // },
 
   //跳转店铺详情
   tostoreinfo: function(e) {
@@ -147,6 +147,9 @@ Page({
 
   //获取店铺详情
   getShopDetail: function() {
+    wx.showLoading({
+      title: 'Loading...',
+    })
     wx.request({
       url: 'https://www.qiyuchuhai.com//xcx/red_shop/queryShopDetail',
       method: "post",
@@ -155,6 +158,7 @@ Page({
         "userNo": app.globalData.userInfo.userNo
       },
       success: res => {
+        wx.hideLoading();
         this.setData({
           ShopDetail: res.data.data
         })
@@ -164,6 +168,9 @@ Page({
 
   //获取可能喜欢列表
   getMayLikeList: function() {
+    wx.showLoading({
+      title: 'Loading...',
+    })
     wx.request({
       url: 'https://www.qiyuchuhai.com//xcx/red_shop/queryShopList',
       method: "post",
@@ -235,9 +242,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    wx.showLoading({
-      title: 'Loading',
-    })
     this.getShopDetail();
 
 
@@ -305,6 +309,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '打卡美食店，签到我的美食'
+    }
   }
 })

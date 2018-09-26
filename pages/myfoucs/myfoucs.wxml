@@ -73,7 +73,7 @@
         <block wx:for="{{cityFoodList}}" wx:key="{{index}}">
           <view class='label-item'>
             <view class='item-left'>
-              <image class='storePic' style="background:url('{{item.cityImgUrl}}') no-repeat top left / 100% auto"></image>
+              <image class='storePic' bindtap='toLocalCuisine' data-cityName="{{item.cityName}}" style="background:url('{{item.cityImgUrl}}') no-repeat top left / 100% auto"></image>
               <view class='storeCate'>
                 <text class='cate-title'>{{item.cityLabel}}</text>
                 <text class='store-number'>{{item.shopCount}}家店铺</text>

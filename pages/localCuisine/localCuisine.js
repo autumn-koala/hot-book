@@ -56,7 +56,7 @@ Page({
       },
       success: res => {
         wx.hideLoading();
-        console.log(res.data);
+        // console.log(res.data);
         this.setData({
           CityFoodDetail: res.data.data
         })

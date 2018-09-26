@@ -22,12 +22,21 @@ Page({
     })
   },
 
+//跳转地方美食
+toLocalCuisine:function(e){
+  wx.navigateTo({
+    url: '/pages/localCuisine/localCuisine?cityName='+e.currentTarget.dataset.cityname,
+  })
+},
+
   toggleTable: function () {
     this.setData({
       select: !this.data.select,
       select1: !this.data.select1,
       currentPage: 1,
-      noMore: false
+      noMore: false,
+      cityShopList: [],
+      cityFoodList: []
     })
     this.data.select && this.getMyFocusShop();
     this.data.select1 && this.getMyFocusFood();
