@@ -26,7 +26,7 @@
   <scroll-view class="cate-scroll" scroll-x>
     <block wx:for="{{CityClassifyList}}" wx:key="{{index}}">
       <view class='cate-item'>
-        <navigator url="/pages/localCuisine/localCuisine?cityName={{item.cityName}}">
+        <navigator url="/pages/localCuisine/localCuisine?cityName={{item.cityName}}" hover-class="none">
           <view class='cate-box'>
             <image style="background:url('{{item.cityImgUrl}}') no-repeat left top / 100% auto" class="cate-image">
               <text class="number">{{item.cityAutographSumCount}}人已签到</text>
@@ -76,7 +76,7 @@
         </navigator>
         <view class='position-share'>
           <view class='position'>{{item.citylabel}}</view>
-          <button class='share' open-type='share'>
+          <button class='share' open-type='share' bindtap='shopShare' data-index='{{index}}'>
             <image class='share-icon' src='/images/share.png' /> 分享
           </button>
         </view>

@@ -11,13 +11,13 @@
     "pages/application/application",
     "pages/search/search",
     "pages/searchResult/searchResult",
-    "pages/position/position",
     "pages/nearbyCate/nearbyCate",
     "pages/swiper/swiper",
-    "component/loading/loading"
+    "component/loading/loading",
+    "pages/position/position"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom",

@@ -55,7 +55,7 @@
 
 /* 轮播 */
 swiper{
-  margin-top: 238rpx;
+  margin-top: 248rpx;
   height: 376rpx;
 }
 .swiper_item{
@@ -165,7 +165,7 @@ color: transparent;
   height: 10rpx;
 }
 .food-item{
-  margin: 60rpx 0 40rpx;
+  margin: 60rpx 0 100rpx;
 }
 .food-item .foodImg{
   width: 670rpx;

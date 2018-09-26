@@ -1,15 +1,27 @@
 /* pages/searchResult/searchResult.wxss */
+.back-bar{
+  width: 100%;
+  height: 116rpx;
+  padding: 60rpx 30rpx 20rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+.back{
+  width: 18rpx;
+  height: 37rpx;
+}
 /* 搜索 */
 .search{
-  height: 218rpx;
+  height: 134rpx;
   width: 100%;
-  padding: 128rpx 40rpx 20rpx;
+  padding: 20rpx 40rpx 20rpx;
   box-sizing: border-box;
   position: fixed;
   left: 0;
   top: 0;
   background: #fff;
   z-index: 999;
+  margin-top: 128rpx;
 }
 .search-input{
   width: calc(100% - 80rpx);
@@ -33,14 +45,14 @@
   z-index:100;
   width: 30rpx;
   height: 30rpx;
-  top: 150rpx;
+  top: 45rpx;
   left: 60rpx;
 }
 .close{
   width: 29rpx;
   height: 29rpx;
   position: absolute;
-  top: 150rpx;
+  top: 45rpx;
   right: 60rpx;
   z-index:100;
 }
@@ -98,7 +110,7 @@
   margin-bottom: 30rpx;
   position: relative;
 }
-.like{
+.li-like {
   position: absolute;
   top: 20rpx;
   right: 20rpx;
@@ -106,32 +118,58 @@
   flex-direction: column;
   align-items: center;
 }
-.likeimg{
+
+.likeimg {
   width: 28rpx;
   height: 26rpx;
   margin-bottom: 10rpx;
 }
-.number{
+
+.like-number {
   font-size: 20rpx;
   font-weight: 400;
   color: #fff;
 }
-.sign{
+.like-number.hit{
+  color: #f55;
+}
+
+.li-sign {
   position: absolute;
   left: 15rpx;
   bottom: 15rpx;
   display: flex;
   flex-direction: row;
-}
-.sign-photo{
-  display: flex;
-  justify-content: flex-start;
   align-items: center;
 }
-.photo{
+
+.li-sign-photo {
+  width: 92rpx;
+  height: 40rpx;
+  position: relative;
+  margin-right: 10rpx;
+}
+
+.li-sign-photo-i {
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;
+  border: 1rpx  solid #eaeaea;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.li-sign-photo-i:nth-child(2){
+  left: 26rpx;
+}
+.li-sign-photo-i:nth-child(3){
+  left: 52rpx;
+}
+.li-sign-number{
+  font-size: 20rpx;
+  font-weight: 400;
+  color: #fff;
 }
 .food-name{
   font-size: 28rpx;

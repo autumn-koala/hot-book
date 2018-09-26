@@ -1,4 +1,7 @@
 <!--pages/search/search.wxml-->
+<view class='back-bar'>
+  <image class='back' src='/images/back_black.png' bindtap='back'></image>
+</view>
 <view class='search'>
   <image src='/images/search.png' bindtap='searchBtn' class='search-icon'/>
   <input class='search-input' bindinput='contextChange' value='{{searchContext}}' bindconfirm='searchBtn' confirm-type='search' placeholder='搜索网红店' placeholder-class='input-placeholder'></input>

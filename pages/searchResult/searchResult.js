@@ -14,10 +14,46 @@ Page({
     pageSize: 10,
     searchNone: false
   },
+  back: function () {
+    wx.navigateBack({
+      //
+    })
+  },
+//店铺关注
+  shopLike: function (e) {
+    let index = e.currentTarget.dataset.index;
+    let follow = `searchList[${index}].follow`;
+    let followCount = `searchList[${index}].followCount`;
+    wx.request({
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/shopFollow',
+      method: "post",
+      data: {
+        "shopNo": this.data.searchList[index].shopNo,
+        "followFlag": !this.data.searchList[index].follow,
+        "userNo": app.globalData.userInfo.userNo
+      },
+      success: res => {
+        if (this.data.searchList[index].follow) {
+          this.setData({
+            [follow]: !this.data.searchList[index].follow,
+            [followCount]: this.data.searchList[index].followCount - 1
+          })
+        } else {
+          this.setData({
+            [follow]: !this.data.searchList[index].follow,
+            [followCount]: this.data.searchList[index].followCount + 1
+          })
+        }
+        // this.getShopListAll();
+      }
+    })
+  },
+
+
   /*获取搜索列表*/
   getSearchList : function () {
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/searchShopList',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/searchShopList',
       method: 'post',
       data: {
         currentPage: this.data.currentPage,
@@ -108,15 +144,13 @@ Page({
   /*清除搜索条件*/
   clearSearch : function () {
     this.setData({
-      searchContext: ''
-    })
-    wx.redirectTo({
-      url: '/pages/search/search',
+      searchContext: '',
+      searchList:[]
     })
   },
   /*跳转店铺详情*/
   toShop: function (e) {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/storeinfo/storeinfo?shopNo=' + e.currentTarget.dataset.id,
     })
   },

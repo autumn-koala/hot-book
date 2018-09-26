@@ -60,7 +60,7 @@ App({
                       that.globalData.userInfo['userNo'] = res1.userNo;
                       that.globalData.userInfo['openId'] = res1.openId;
                       that.globalData.userInfo['splashVideo'] = res1.homePageVideoUrl;
-
+                      that.globalData.userInfo['sessionKey'] = res1.sessionKey;
                       wx.setStorage({
                         key: 'userInfo',
                         data: that.globalData.userInfo,

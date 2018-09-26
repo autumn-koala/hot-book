@@ -13,6 +13,34 @@ Page({
     shopNo: null,
     p: 1
   },
+  //拨打电话
+  tel:function(e){
+    console.log(e);
+    wx.makePhoneCall({
+      
+      phoneNumber: e.currentTarget.dataset.tel,
+      success:function(){
+        console.log('拨打电话成功！')
+      },
+      fail:function(){
+        console.log('拨打电话失败！')
+      }
+    })
+  },
+  //店铺分享
+  shopShare: function () {
+    wx.request({
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/shopShare',
+      method: "post",
+      data: {
+        "shopNo": this.data.ShopDetail.shopNo,
+        "userNo": app.globalData.userInfo.userNo
+      },
+      success: res => {
+        //
+      }
+    })
+  },
 
   //获取用户手机号
   getPhoneNumber: function(e) {
@@ -31,8 +59,10 @@ Page({
         title: '提示',
         showCancel: false,
         content: '同意授权',
-        success: function(res) {}
+        success: function(res) {
+        }
       })
+      
     }
   },
 
@@ -74,10 +104,17 @@ Page({
     // })
 
   },
+
+  //跳转到地图
+  tomap:function(e){
+    wx.navigateTo({
+      url: '/pages/position/position?latitude=' + e.currentTarget.dataset.latitude + '&longitude=' + e.currentTarget.dataset.longitude,
+    })
+  },
   //店铺关注
   shopLike: function(e) {
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/shopFollow',
       method: "post",
       data: {
         "shopNo": this.data.shopNo,
@@ -93,7 +130,7 @@ Page({
   shopAutograph: function(e) {
     let autograph = `ShopDetail.autograph`
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopAutograph',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/shopAutograph',
       method: "post",
       data: {
         "shopNo": this.data.shopNo,
@@ -111,7 +148,7 @@ Page({
   //获取店铺详情
   getShopDetail: function() {
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com//xcx/red_shop/queryShopDetail',
+      url: 'https://www.qiyuchuhai.com//xcx/red_shop/queryShopDetail',
       method: "post",
       data: {
         "shopNo": this.data.shopNo,
@@ -128,7 +165,7 @@ Page({
   //获取可能喜欢列表
   getMayLikeList: function() {
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com//xcx/red_shop/queryShopList',
+      url: 'https://www.qiyuchuhai.com//xcx/red_shop/queryShopList',
       method: "post",
       data: {
         "currentPage": this.data.p,
@@ -152,7 +189,7 @@ Page({
     let follow = `mayLikeList[${index}].follow`;
     let followCount = `mayLikeList[${index}].followCount`;
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/shopFollow',
       method: "post",
       data: {
         "shopNo": this.data.mayLikeList[index].shopNo,
@@ -239,7 +276,7 @@ Page({
       wait: true
     })
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com//xcx/red_shop/queryShopList',
+      url: 'https://www.qiyuchuhai.com//xcx/red_shop/queryShopList',
       method: "post",
       data: {
         "currentPage": this.data.p,

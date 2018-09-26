@@ -13,7 +13,7 @@ Page({
   //是否显示盒子
   isShowBox:function(){
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/box/isShowBox',
+      url: 'https://www.qiyuchuhai.com/xcx/box/isShowBox',
       method:"post",
       data:{
         "productCode": "600009"
@@ -34,7 +34,7 @@ Page({
   //盒子列表
   getBoxList: function () {
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/box/queryBoxList',
+      url: 'https://www.qiyuchuhai.com/xcx/box/queryBoxList',
       method: "post",
       data: {
         "productCode": "600009"

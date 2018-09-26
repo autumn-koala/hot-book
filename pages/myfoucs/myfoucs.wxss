@@ -121,7 +121,9 @@
   font-weight: 400;
   color: #fff;
 }
-
+.like-number.hit{
+  color: #f55;
+}
 .li-sign {
   position: absolute;
   left: 15rpx;

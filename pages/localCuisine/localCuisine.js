@@ -31,7 +31,7 @@ Page({
   //城市美食关注
   cityFollow: function(e) {
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/cityFoodFollow',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/cityFoodFollow',
       method: "post",
       data: {
         "cityName": this.data.CityFoodDetail.cityName,
@@ -46,7 +46,7 @@ Page({
   //获取地方美食明细
   getCityFoodDetail: function() {
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryCityFoodDetail',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryCityFoodDetail',
       method: "post",
       data: {
         "cityName": this.data.cityName,
@@ -94,7 +94,7 @@ Page({
 
     //获取地方相关餐厅列表
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryCityShopList',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryCityShopList',
       method: "post",
       data: {
         "cityName": this.data.cityName,
@@ -113,7 +113,7 @@ Page({
 
     //获取地方全部美食店铺列表
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryShopList',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryShopList',
       method: "post",
       data: {
         "cityName": this.data.cityName,
@@ -137,7 +137,7 @@ Page({
     let follow = `ShopList[${index}].follow`;
     let followCount = `ShopList[${index}].followCount`;
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/shopFollow',
       method: "post",
       data: {
         "shopNo": this.data.ShopList[index].shopNo,
@@ -191,7 +191,7 @@ Page({
       p: this.data.p + 1,
     })
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryShopList',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryShopList',
       method: "post",
       data: {
         "cityName": this.data.cityName,

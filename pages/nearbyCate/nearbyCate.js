@@ -10,12 +10,13 @@ Page({
   data: {
     p: 1
   },
+  //店铺关注
   shopLike: function (e) {
     let index = e.currentTarget.dataset.index;
     let follow = `NearbyShopList[${index}].follow`;
     let followCount = `NearbyShopList[${index}].followCount`;
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/shopFollow',
       method: "post",
       data: {
         "shopNo": this.data.NearbyShopList[index].shopNo,
@@ -76,7 +77,7 @@ Page({
    */
   onShow: function() {
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
       method: "post",
       data: {
         "currentPage": this.data.p,
@@ -123,7 +124,7 @@ Page({
       p: this.data.p + 1
     })
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
       method: "post",
       data: {
         "currentPage": this.data.p,

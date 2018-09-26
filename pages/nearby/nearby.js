@@ -19,7 +19,7 @@ Page({
     let follow = `NearbyShopList[${index}].follow`;
     let followCount = `NearbyShopList[${index}].followCount`;
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/shopFollow',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/shopFollow',
       method: "post",
       data: {
         "shopNo": this.data.NearbyShopList[index].shopNo,
@@ -43,18 +43,19 @@ Page({
     })
   },
   tonearbyCate: function(e) {
-    // console.log(e);
-    // let shopClass = e.currentTarget.dataset.shopclass;
-    // let latitude = e.currentTarget.dataset.latitude;
-    // let longitude = e.currentTarget.dataset.longitude;
     wx.navigateTo({
       url: '../nearbyCate/nearbyCate?shopClass=' + e.currentTarget.dataset.shopclass + '&latitude=' + e.currentTarget.dataset.latitude + '&longitude=' + e.currentTarget.dataset.longitude,
     })
   },
-
-  tostoreinfo: function() {
+  // 跳转店铺详情
+  tostoreinfo: function (e) {
+    console.log(e);
+    this.setData({
+      shopClass: e.currentTarget.dataset.shopclass,
+      shopCity: e.currentTarget.dataset.shopcity
+    })
     wx.navigateTo({
-      url: '../storeinfo/storeinfo',
+      url: '../storeinfo/storeinfo?shopNo=' + e.currentTarget.dataset.shopno + '&shopClass=' + e.currentTarget.dataset.shopclass + '&shopCity=' + e.currentTarget.dataset.shopcity,
     })
   },
 
@@ -80,10 +81,6 @@ Page({
    */
   onLoad: function(options) {
     this.getPosition();
-    // var userNo = wx.getStorageSync("userInfo['userNo']"); //wx.getStorageSync(key)，获取本地缓存
-    // this.setData({
-    //   userNo: userNo
-    // })
   },
 
   /**
@@ -99,56 +96,66 @@ Page({
    */
   onShow: function() {
     //获取用户信息
-    wx.getLocation({
-      success: function(res) {
-        latitude: res.latitude;
-        longitude: res.longitude;
-      },
-    })
+    // wx.getLocation({
+    //   success: function(res) {
+    //     latitude: res.latitude;
+    //     longitude: res.longitude;
+    //   },
+    // })
     // this.getNearBy();
     var that = this;
 
     setTimeout(function() {
-      //获取附近标签
-      wx.request({
-        url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryNearbyShopClassList',
-        method: "post",
-        data: {
-          "latitude": that.data.latitude,
-          "longitude": that.data.longitude,
-          "userNo": app.globalData.userInfo.userNo
-        },
-        success: res => {
-          console.log(res);
-          that.setData({
-            NearbyShopClassList: res.data.data
-          })
-        }
+      wx.showLoading({
+        title: 'Loading...',
       })
+      if (that.data.latitude && that.data.longitude){
+        //获取附近标签
+        wx.request({
+          url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryNearbyShopClassList',
+          method: "post",
+          data: {
+            "latitude": that.data.latitude,
+            "longitude": that.data.longitude,
+            "userNo": app.globalData.userInfo.userNo
+          },
+          success: res => {
+            wx.hideLoading();
+            that.setData({
+              NearbyShopClassList: res.data.data
+            })
+          }
+        })
 
-      //获取附近美食列表
-      wx.request({
-        url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
-        method: "post",
-        data: {
-          "currentPage": that.data.p,
-          "pageSize": "8",
-          "latitude": that.data.latitude,
-          "longitude": that.data.longitude,
-          "userNo": app.globalData.userInfo.userNo
-        },
-        success: res => {
-          console.log(res);
-          that.setData({
-            NearbyShopList: res.data.data
-          })
-        }
-      })
+        wx.showLoading({
+          title: 'Loading',
+        })
+        //获取附近美食列表
+        wx.request({
+          url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
+          method: "post",
+          data: {
+            "currentPage": that.data.p,
+            "pageSize": "8",
+            "latitude": that.data.latitude,
+            "longitude": that.data.longitude,
+            "userNo": app.globalData.userInfo.userNo
+          },
+          success: res => {
+            wx.hideLoading();
+            that.setData({
+              NearbyShopList: res.data.data
+            })
+          }
+        })
+      }else{
+        wx.showToast({
+          title: '获取位置失败，请检查网络...',
+          icon:"none"
+        })
+      }
+     
     }, 2000)
-
-
-    console.log(this.data.latitude);
-    console.log(this.data.longitude);
 
     // this.getNearBy();
   },
@@ -182,7 +189,7 @@ Page({
       p: this.data.p + 1
     })
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
       method: "post",
       data: {
         "currentPage": this.data.p,

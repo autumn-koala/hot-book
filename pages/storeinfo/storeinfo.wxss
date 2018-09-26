@@ -128,7 +128,13 @@
   font-weight: 500;
   color: #f55;
 }
-
+.time-info{
+  width: 400rpx;
+  height: 68rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .time_close {
   font-size: 26rpx;
   font-weight: 500;
@@ -167,7 +173,7 @@
 }
 
 .address {
-  width: 450rpx;
+  width: 500rpx;
   height: 33rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -196,9 +202,11 @@
 .local-icon {
   width: 26rpx;
   height: 31rpx;
-  margin-right: 40rpx;
+  margin-right: 20rpx;
 }
-
+.phone{
+  margin-left: 20rpx;
+}
 .phone-icon {
   width: 25rpx;
   height: 31rpx;
@@ -281,7 +289,7 @@
   margin: 0;
 }
 .sign-btn.none{
-  border: none;
+  border: 1rpx solid #acacac;
 }
 
 /* 推荐菜 */

@@ -1,4 +1,4 @@
-const baseUrl = 'http://xcx-dev.qiyuchuhai.com/xcx'
+const baseUrl = 'https://www.qiyuchuhai.com/xcx'
 
 
 const showLoading = page =>{

@@ -12,6 +12,11 @@ Page({
     hotSearchList: [],
     firstHot: ''
   },
+  back:function(){
+    wx.navigateBack({
+      //
+    })
+  },
   /*输入框监控*/
   contextChange : function (e) {
     if (e.detail.value) {
@@ -64,7 +69,7 @@ Page({
   /*获取热门搜索*/
   getHotList: function (e) {
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/querySearchRecommend',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/querySearchRecommend',
       method: 'get',
       data: {},
       success: res => {

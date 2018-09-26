@@ -1,6 +1,6 @@
 // pages/login/login.js
 const app = getApp();
-
+const util = require('../../utils/util.js');
 Page({
 
   /**
@@ -10,6 +10,23 @@ Page({
 
   },
 
+  //保存用户信息
+  saveUserInfo: function () {
+    util.request('/comm/saveUserInfo', {
+      "city": app.globalData.userInfo.city,
+      "country": app.globalData.userInfo.country,
+      "nickname": app.globalData.userInfo.nickName,
+      "productCode": "600009",
+      "province": app.globalData.userInfo.province,
+      "userAvatarUrl": app.globalData.userInfo.avatarUrl,
+      "userNo": app.globalData.userInfo.userNo,
+      "userSex": app.globalData.userInfo.gender,
+      "wxOpenId": app.globalData.userInfo.openId
+    },
+      function (res) {
+        //
+      })
+  },
   bindgetuserinfo: function (e) {
     if (e.detail.userInfo) {
       app.login();
@@ -48,6 +65,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
+    this.saveUserInfo();
 
   },
 

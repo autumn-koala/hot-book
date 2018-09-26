@@ -17,7 +17,7 @@
         <view class='cuisin-cate'>{{ShopDetail.shopClass}}</view>
       </view>
       <view class='btn_group'>
-        <button class='cuisin_share' open-type='share'>
+        <button class='cuisin_share' open-type='share' bindtap='shopShare'>
           <image class='share-icon' src='/images/share-w.png' /> 分享
         </button>
         <button class='foucs' catchtap='shopLike'>{{ShopDetail.follow ? '已关注':'关注'}}</button>
@@ -56,13 +56,15 @@
 <view class='address-info'>
   <view class='address-left'>
     <image class='addressicon' src='/images/shopaddress.png'></image>
-    <view class='address'>地址：{{ShopDetail.shopAddress}}
-      <!-- <text class='add-detail'>{{ShopDetail.shopAddress}}</text> -->
-    </view>
+    <view class='address'>地址：{{ShopDetail.shopAddress}}</view>
   </view>
   <view class='address-right'>
     <image class='local-icon' src='/images/localtion.png' bindtap='getPosition' data-latitude='{{ShopDetail.shopJingdu}}' data-longitude='{{ShopDetail.shopWeidu}}'></image>
-    <image class='phone-icon' src='/images/phone.png'></image>
+    <block wx:if="{{ShopDetail.shopTel}}">
+      <view class='phone' bindtap='tel' data-tel="{{ShopDetail.shopTel}}">
+        <image class='phone-icon' src='/images/phone.png'></image>
+      </view>
+    </block>
   </view>
 </view>
 
@@ -103,6 +105,7 @@
 </block>
 
 <!-- 你可能还喜欢 -->
+
 <view class='nearbyfood'>
   <view class='nearby'>
     <text class='nearbyfood-title'>你可能还喜欢</text>

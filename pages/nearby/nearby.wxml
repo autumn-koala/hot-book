@@ -27,35 +27,33 @@
   </view>
   <view class='foodlist ul'>
     <block wx:for="{{NearbyShopList}}" wx:key="{{index}}">
-      <view class='fooditem li' bindtap='tostoreinfo'>
-        <navigator url='/pages/storeinfo/storeinfo?shopNo={{item.shopNo}}&shopClass={{item.shopClass}}&shopCity={{item.shopCity}}'>
-          <image class='foodPic li-pic' style="background:url('{{item.shopBanner}}') no-repeat center center / 150% auto">
-            <image src='/images/shop_dz.png' class='li-pic-dz'></image>
-            <view class='li-cate-like'>
-              <view class='li-cate'>{{item.shopClass}}</view>
-              <block wx:if="{{!item.follow}}">
-                <view class='li-like' catchtap='shopLike' data-index='{{index}}'>
-                  <image class='likeimg' src='/images/nearbylike.png'></image>
-                  <text class='like-number'>{{item.followCount}}</text>
-                </view>
-              </block>
-              <block wx:else>
-                <view class='li-like' catchtap='shopLike' data-index='{{index}}'>
-                  <image class='likeimg' src='/images/nearbylike-s.png'></image>
-                  <text class='like-number hit'>{{item.followCount}}</text>
-                </view>
-              </block>
-            </view>
-            <view class='li-sign'>
-              <view class='li-sign-photo'>
-                <block wx:for="{{item.userAvatarUrlList}}" wx:key="{{index}}">
-                  <image class='li-sign-photo-i' style="background:url('{{item}}') no-repeat left top / 100% auto"></image>
-                </block>
+      <view class='fooditem li' bindtap='tostoreinfo' data-shopNo="{{item.shopNo}}" data-shopClass="{{item.shopClass}}" data-shopCity="{{item.shopCity}}">
+        <image class='foodPic li-pic' style="background:url('{{item.shopBanner}}') no-repeat center center / 150% auto">
+          <image src='/images/shop_dz.png' class='li-pic-dz'></image>
+          <view class='li-cate-like'>
+            <view class='li-cate'>{{item.shopClass}}</view>
+            <block wx:if="{{!item.follow}}">
+              <view class='li-like' catchtap='shopLike' data-index='{{index}}'>
+                <image class='likeimg' src='/images/nearbylike.png'></image>
+                <text class='like-number'>{{item.followCount}}</text>
               </view>
-              <text class='li-sign-number'>共{{item.shopAutographCount}}人签到</text>
+            </block>
+            <block wx:else>
+              <view class='li-like' catchtap='shopLike' data-index='{{index}}'>
+                <image class='likeimg' src='/images/nearbylike-s.png'></image>
+                <text class='like-number hit'>{{item.followCount}}</text>
+              </view>
+            </block>
+          </view>
+          <view class='li-sign'>
+            <view class='li-sign-photo'>
+              <block wx:for="{{item.userAvatarUrlList}}" wx:key="{{index}}">
+                <image class='li-sign-photo-i' style="background:url('{{item}}') no-repeat left top / 100% auto"></image>
+              </block>
             </view>
-          </image>
-        </navigator>
+            <text class='li-sign-number'>共{{item.shopAutographCount}}人签到</text>
+          </view>
+        </image>
 
         <text class='food-name'>{{item.shopName}}</text>
         <view class='price-position'>
