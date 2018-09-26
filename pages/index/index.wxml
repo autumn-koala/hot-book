@@ -14,7 +14,7 @@
 <swiper autoplay="{{autoplay}}" previous-margin="{{preMargin}}rpx" next-margin="{{nextMargin}}rpx" current='0'>
   <block wx:for="{{Banner}}" wx:key="{{index}}">
     <swiper-item class="swiper_item">
-      <image style="background:url('{{item.bannerImgUrl}}') no-repeat center center /cover" class="slide-image"></image>
+      <image style="background:url('{{item.bannerImgUrl}}') no-repeat center center /cover" class="slide-image" bindtap='tostoreinfo1' data-shopNo="{{item.shopNo}}"></image>
     </swiper-item>
   </block>
 </swiper>
@@ -54,8 +54,8 @@
   <view class='foodlist'>
     <block wx:for="{{ShopList}}" wx:key="{{index}}">
       <view class='food-item'>
-        <navigator url='/pages/storeinfo/storeinfo?shopNo={{item.shopNo}}&shopClass={{item.shopClass}}&shopCity={{item.shopCity}}'>
-          <image class='foodImg' style="background:url('{{item.shopBanner}}') no-repeat center left/100% auto">
+        <!-- <navigator url='/pages/storeinfo/storeinfo?shopNo={{item.shopNo}}&shopClass={{item.shopClass}}&shopCity={{item.shopCity}}'> -->
+          <image class='foodImg' bindtap='tostoreinfo'  data-shopNo="{{item.shopNo}}" data-shopClass="{{item.shopClass}}" data-shopCity="{{item.shopCity}}" style="background:url('{{item.shopBanner}}') no-repeat center left/100% auto">
 
             <view class='cate'>
               <text>{{item.shopClass}}</text>
@@ -73,7 +73,7 @@
               </view>
             </block>
           </image>
-        </navigator>
+        <!-- </navigator> -->
         <view class='position-share'>
           <view class='position'>{{item.citylabel}}</view>
           <button class='share' open-type='share' bindtap='shopShare' data-index='{{index}}'>

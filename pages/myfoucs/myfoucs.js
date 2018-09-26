@@ -46,6 +46,9 @@ toLocalCuisine:function(e){
     if (this.data.noMore) {
       return;
     }
+    wx.showLoading({
+      title: 'Loading...',
+    })
     wx.request({
       url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryShopFollowList',
       method: 'post',
@@ -55,6 +58,7 @@ toLocalCuisine:function(e){
         userNo: app.globalData.userInfo.userNo
       },
       success: res => {
+        wx.hideLoading();
         let list = this.data.cityShopList;
         if (res.data.data) {
           res.data.data.map(item => {
@@ -102,6 +106,9 @@ toLocalCuisine:function(e){
     if (this.data.noMore) {
       return;
     }
+    wx.showLoading({
+      title: 'Loading...',
+    })
     wx.request({
       url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryCityFoodFollowList',
       method: 'post',
@@ -111,6 +118,7 @@ toLocalCuisine:function(e){
         userNo: app.globalData.userInfo.userNo
       },
       success: res => {
+        wx.hideLoading();
         let list = this.data.cityFoodList;
         if (res.data.data) {
           res.data.data.map(item => {
@@ -210,6 +218,12 @@ toLocalCuisine:function(e){
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '打卡美食店，签到我的美食'
+    }
   }
 })

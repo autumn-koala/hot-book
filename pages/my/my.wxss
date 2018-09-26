@@ -1,57 +1,69 @@
 /* pages/my/my.wxss */
-.top{
+
+.top {
   height: 125rpx;
-  padding-top:116rpx; 
+  padding-top: 116rpx;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin: 0 30rpx 30rpx;
 }
-.top .photo{
+
+.top .photo {
   width: 125rpx;
   height: 125rpx;
-  border-radius:  50%;
+  border-radius: 50%;
   margin-right: 30rpx;
 }
-.username{
+
+.username {
   font-size: 34rpx;
   font-weight: 500;
   color: #000;
 }
-.split-line{
+
+.split-line {
   width: 100%;
   height: 20rpx;
-  background: rgba(201, 201, 207,0.3);
+  background: rgba(201, 201, 207, 0.3);
 }
-
-
 
 /* 选项列表 */
-.ul{
+
+.ul {
   margin: 0 30rpx;
 }
-.li{
+
+.li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20rpx 0;
+  padding: 10px 0;
+  border-bottom: 1rpx solid #f8fafa;
 }
-.icon-title{
+button.li{
+  background: transparent;
+}
+
+.icon-title {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-.icon{
+
+.icon {
   width: 60rpx;
   height: 60rpx;
   margin-right: 20rpx;
 }
-.title{
+
+.title {
   font-size: 28rpx;
   font-weight: 400;
   color: #000;
 }
-.more{
+
+.more {
   width: 11rpx;
   height: 23rpx;
 }

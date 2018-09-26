@@ -44,15 +44,19 @@ Page({
     }, 150)
 
   },
-
-  tostoreinfo: function() {
-    setTimeout(() => {
-      wx.navigateTo({
-        url: '../storeinfo/storeinfo',
-      })
-    }, 150)
+//跳店铺详情页
+  tostoreinfo: function(e) {
+    wx.navigateTo({
+      url: '../storeinfo/storeinfo?shopNo=' + e.currentTarget.dataset.shopno + '&shopCity=' + e.currentTarget.dataset.shopcity + '&shopClass=' + e.currentTarget.dataset.shopclass,
+    })
   },
 
+  //轮播图跳店铺详情页
+  tostoreinfo1: function (e) {
+    wx.navigateTo({
+      url: '../storeinfo/storeinfo?shopNo=' + e.currentTarget.dataset.shopno,
+    })
+  },
 
   /**店铺关注 */
   shopLike: function(e) {
@@ -123,7 +127,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getHomePage();
+    // this.getHomePage();
     // this.saveUserInfo();
     // this.setData({
     //   userNo: app.globalData.userInfo.userNo
@@ -196,12 +200,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getShopListAll();
+    // this.getShopListAll();
 
-    this.getPageHomeBanner();
+    // this.getPageHomeBanner();
 
-    this.getCityClassifyList();
-    // this.getHomePage();
+    // this.getCityClassifyList();
+    this.getHomePage();
   },
 
   /**

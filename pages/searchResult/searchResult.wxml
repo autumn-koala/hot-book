@@ -12,7 +12,7 @@
 
 <!-- 搜索结果 -->
 <view class='search-result'>
-  <block wx:if="{{searchNone}}">
+  <block wx:if="{{!searchList}}">
     <view class='search_nc'>
       <image class='search-nothing' src='/images/search-nothing.png'></image>
       <text class='search_tip'>没有找到相关内容，换个词试试吧</text>

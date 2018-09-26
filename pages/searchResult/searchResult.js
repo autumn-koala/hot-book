@@ -145,7 +145,8 @@ Page({
   clearSearch : function () {
     this.setData({
       searchContext: '',
-      searchList:[]
+      searchList:null,
+      // searchNone:true
     })
   },
   /*跳转店铺详情*/
@@ -215,6 +216,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '打卡美食店，签到我的美食'
+    }
   }
 })

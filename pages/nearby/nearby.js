@@ -150,7 +150,7 @@ Page({
         })
       }else{
         wx.showToast({
-          title: '获取位置失败，请检查网络...',
+          title: '正在获取位置，请稍候..',
           icon:"none"
         })
       }
@@ -219,6 +219,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '打卡美食店，签到我的美食'
+    }
   }
 })

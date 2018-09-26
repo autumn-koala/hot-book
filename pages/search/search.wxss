@@ -6,6 +6,9 @@
   padding: 60rpx 30rpx 20rpx;
   box-sizing: border-box;
   background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 .back{
   width: 18rpx;
@@ -51,7 +54,7 @@
 
 /* 历史记录 */
 .history{
-  margin: 144rpx 40rpx 40rpx;
+  margin: 280rpx 40rpx 40rpx;
 }
 .history.hot{
   margin-top: 40rpx;
