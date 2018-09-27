@@ -130,6 +130,10 @@ Page({
         wx.showLoading({
           title: 'Loading',
         })
+
+        that.setData({
+          p:1
+        })
         //获取附近美食列表
         wx.request({
           url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
@@ -142,18 +146,23 @@ Page({
             "userNo": app.globalData.userInfo.userNo
           },
           success: res => {
+            wx.showToast({
+              title: '正在获取位置，请稍候..',
+              icon: "none"
+            })
             wx.hideLoading();
             that.setData({
               NearbyShopList: res.data.data
             })
           }
         })
-      }else{
-        wx.showToast({
-          title: '正在获取位置，请稍候..',
-          icon:"none"
-        })
       }
+      // else{
+      //   wx.showToast({
+      //     title: '正在获取位置，请稍候..',
+      //     icon:"none"
+      //   })
+      // }
      
     }, 2000)
 

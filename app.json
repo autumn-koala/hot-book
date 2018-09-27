@@ -14,7 +14,8 @@
     "pages/nearbyCate/nearbyCate",
     "pages/swiper/swiper",
     "component/loading/loading",
-    "pages/position/position"
+    "pages/position/position",
+    "pages/showPic/showPic"
   ],
   "window": {
     "backgroundTextStyle": "dark",

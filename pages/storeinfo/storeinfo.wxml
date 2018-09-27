@@ -1,6 +1,20 @@
 <!--pages/storeinfo/storeinfo.wxml-->
+
+<block wx:if="{{scrollTop}}">
+  <view class='back-bar'>
+    <image class='back' src='/images/back.png' bindtap='back'></image>
+  </view>
+</block>
+<block wx:else>
+  <view class='back-bar white'>
+    <image class='back' src='/images/back_black.png' bindtap='back'></image>
+  </view>
+</block>
+
+
+
 <view class='cuisinePic'>
-  <image class='back_icon' src='/images/back.png' bindtap='back'></image>
+  <!-- <image class='back_icon' src='/images/back.png' bindtap='back'></image> -->
   <image class="picture" style="background:url('{{ShopDetail.shopBanner}}') no-repeat top left/100% auto">
     <view class='pic-zz'></view>
   </image>
@@ -95,7 +109,7 @@
       <block wx:for="{{ShopDetail.foodRecommendList}}" wx:key="{{index}}">
         <view class='cate-item'>
           <view class='cate-box'>
-            <image style="background:url('{{item.foodImgUrl}}') no-repeat left top / 100% auto" class="cate-image" />
+            <image bindtap="showPic" data-img="{{item.foodImgUrl}}" style="background:url('{{item.foodImgUrl}}') no-repeat left top / 100% auto" class="cate-image" />
             <text class="storename">{{item.foodName}}</text>
           </view>
         </view>

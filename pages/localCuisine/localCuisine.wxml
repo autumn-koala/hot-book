@@ -1,6 +1,18 @@
 <!--pages/localCuisine/localCuisine.wxml-->
+<block wx:if="{{scrollTop}}">
+  <view class='back-bar'>
+    <image class='back' src='/images/back.png' bindtap='back'></image>
+  </view>
+</block>
+<block wx:else>
+  <view class='back-bar white'>
+    <image class='back' src='/images/back_black.png' bindtap='back'></image>
+  </view>
+</block>
+
+
 <view class='cuisinePic'>
-  <image class='back_icon' src='/images/back.png' bindtap='back'></image>
+  <!-- <image class='back_icon' src='/images/back.png' bindtap='back'></image> -->
   <image class="picture" style="background:url('{{CityFoodDetail.cityImgUrl}}') no-repeat left top / 100% auto">
     <view class='pic-zz'></view>
   </image>
@@ -26,6 +38,7 @@
       <view class='cate-item' bindtap='tostoreinfo' data-shopNo='{{item.shopNo}}' data-shopClass="{{item.shopClass}}" data-shopCity="{{item.shopCity}}">
         <view class='cate-box'>
           <image style="background:url('{{item.shopBanner}}') no-repeat left top/100% auto" class="cate-image">
+            <image class='cate-image-zz' src='/images/localtion_zz.png'></image>
             <text class="number">{{item.shopAutographCount}}人已签到</text>
           </image>
           <text class="storename">{{item.shopName}}</text>
@@ -48,8 +61,8 @@
   </view>
   <view class='foodlist ul'>
     <block wx:for="{{ShopList}}" wx:key="{{index}}">
-      <view class='fooditem li' bindtap='tostoreinfo'>
-        <image class='foodPic li-pic' bindtap='tostoreinfo' data-shopNo='{{item.shopNo}}' data-shopClass="{{item.shopClass}}" data-shopCity="{{item.shopCity}}" style="background:url('{{item.shopBanner}}') no-repeat left top / 100% 100%">
+      <view class='fooditem li'>
+        <image class='foodPic li-pic' bindtap='tostoreinfo' data-shopNo='{{item.shopNo}}' data-shopClass="{{item.shopClass}}" data-shopCity="{{item.shopCity}}" style="background:url('{{item.shopBanner}}') no-repeat left top / 100% auto">
           <image src='/images/shop_dz.png' class='li-pic-dz'></image>
           <block wx:if="{{!item.follow}}">
             <view class='li-like' catchtap='shopLike' data-index='{{index}}'>

@@ -106,27 +106,30 @@ Page({
 
 
   //保存用户信息
-  saveUserInfo: function() {
-    util.request('/comm/saveUserInfo', {
-        "city": app.globalData.userInfo.city,
-        "country": app.globalData.userInfo.country,
-        "nickname": app.globalData.userInfo.nickName,
-        "productCode": "600009",
-        "province": app.globalData.userInfo.province,
-        "userAvatarUrl": app.globalData.userInfo.avatarUrl,
-        "userNo": app.globalData.userInfo.userNo,
-        "userSex": app.globalData.userInfo.gender,
-        "wxOpenId": app.globalData.userInfo.openId
-      },
-      function(res) {
-        //
-      })
-  },
+  // saveUserInfo: function() {
+  //   util.request('/comm/saveUserInfo', {
+  //       "city": app.globalData.userInfo.city,
+  //       "country": app.globalData.userInfo.country,
+  //       "nickname": app.globalData.userInfo.nickName,
+  //       "productCode": "600009",
+  //       "province": app.globalData.userInfo.province,
+  //       "userAvatarUrl": app.globalData.userInfo.avatarUrl,
+  //       "userNo": app.globalData.userInfo.userNo,
+  //       "userSex": app.globalData.userInfo.gender,
+  //       "wxOpenId": app.globalData.userInfo.openId
+  //     },
+  //     function(res) {
+  //       //
+  //     })
+  // },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.getSetting({
+      
+    })
     // this.getHomePage();
     // this.saveUserInfo();
     // this.setData({
@@ -147,6 +150,9 @@ Page({
 
   //获取首页全部店铺列表
   getShopListAll: function() {
+    this.setData({
+      p:1
+    })
     wx.request({
       url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryShopList',
       method: "post",
@@ -189,6 +195,7 @@ Page({
   },
 
   getHomePage:function(){
+    app.login(this.getShopListAll)
     this.getShopListAll();
 
     this.getPageHomeBanner();

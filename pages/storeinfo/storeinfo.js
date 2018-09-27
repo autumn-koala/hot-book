@@ -11,7 +11,27 @@ Page({
    */
   data: {
     shopNo: null,
-    p: 1
+    p: 1,
+    scrollTop:true
+  },
+
+  /**监听页面滚动 */
+  onPageScroll: function (ev) {
+    if (ev.scrollTop >= 100) {
+      this.setData({
+        scrollTop: false
+      })
+    } else if (ev.scrollTop <= 100) {
+      this.setData({
+        scrollTop: true
+      })
+    }
+  },
+  //显示推荐菜大图
+  showPic:function(e){
+    wx.navigateTo({
+      url: '/pages/showPic/showPic?img='+e.currentTarget.dataset.img,
+    })
   },
   //拨打电话
   tel:function(e){
@@ -170,6 +190,9 @@ Page({
   getMayLikeList: function() {
     wx.showLoading({
       title: 'Loading...',
+    })
+    this.setData({
+      p:1
     })
     wx.request({
       url: 'https://www.qiyuchuhai.com//xcx/red_shop/queryShopList',

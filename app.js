@@ -35,7 +35,7 @@ App({
     }
 
   },
-  login: function() {
+  login: function(successFn) {
     var that = this;
       // 登录
       wx.login({
@@ -47,7 +47,7 @@ App({
             wxCode: res.code
           }, function(res1) {
             console.log(res1);
-
+            successFn ? successFn():''
             // 获取用户信息
             wx.getSetting({
               success: res => {
@@ -77,6 +77,10 @@ App({
                         that.userInfoReadyCallback(res)
                       }
                     }
+                  })
+                }else{
+                  wx.navigateTo({
+                    url: '/pages/login/login',
                   })
                 }
               }

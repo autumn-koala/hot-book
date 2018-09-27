@@ -1,4 +1,27 @@
 /* pages/localCuisine/localCuisine.wxss */
+
+
+.back-bar{
+  width: 100%;
+  height: 116rpx;
+  padding: 60rpx 30rpx 20rpx;
+  box-sizing: border-box;
+  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.back-bar.white{
+  background: #fff;
+}
+.back{
+  width: 18rpx;
+  height: 37rpx;
+}
+
+
+
 .back_icon {
   width: 18rpx;
   height: 37rpx;
@@ -110,6 +133,13 @@
   /* margin-right: 20rpx; */
   border-radius: 10rpx;
   position: relative;
+}
+.cate-image-zz{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 49rpx;
 }
 .cate-scroll .cate-item{
   width: 200rpx;

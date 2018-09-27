@@ -50,7 +50,7 @@ toLocalCuisine:function(e){
       title: 'Loading...',
     })
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryShopFollowList',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryShopFollowList',
       method: 'post',
       data: {
         currentPage: this.data.currentPage,
@@ -110,7 +110,7 @@ toLocalCuisine:function(e){
       title: 'Loading...',
     })
     wx.request({
-      url: 'http://xcx-dev.qiyuchuhai.com/xcx/red_shop/queryCityFoodFollowList',
+      url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryCityFoodFollowList',
       method: 'post',
       data: {
         currentPage: this.data.currentPage,

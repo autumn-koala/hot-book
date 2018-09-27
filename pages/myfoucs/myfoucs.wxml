@@ -8,59 +8,59 @@
   <view class="option {{select1? 'selected':''}}" bindtap='toggleTable'>标签</view>
 </view>
 
-<view>
+<view wx:if="{{cityShopList || cityFoodList}}">
   <block wx:if="{{select}}">
     <!-- 商家列表 -->
     <view class='nearbyfood'>
-      <block wx:if="{{cityShopList}}">
-        <view class='foodlist ul'>
-          <block wx:for="{{cityShopList}}" wx:key="{{index}}">
-            <view class='fooditem li' bindtap='tostoreinfo' data-id='{{item.shopNo}}' bindtap='toShop' data-shopClass="{{item.shopClass}}" data-shopCity="{{item.shopCity}}">
-              <image class='foodPic li-pic' style="background:url('{{item.shopBanner}}') no-repeat left top / 100% 100%">
-                <image src='/images/shop_dz.png' class='li-pic-dz'></image>
-                <!-- <block wx:if="{{!item.follow}}">
+      <!-- <block wx:if="{{cityShopList}}"> -->
+      <view class='foodlist ul'>
+        <block wx:for="{{cityShopList}}" wx:key="{{index}}">
+          <view class='fooditem li' bindtap='tostoreinfo' data-id='{{item.shopNo}}' bindtap='toShop' data-shopClass="{{item.shopClass}}" data-shopCity="{{item.shopCity}}">
+            <image class='foodPic li-pic' style="background:url('{{item.shopBanner}}') no-repeat left top / 100% 100%">
+              <image src='/images/shop_dz.png' class='li-pic-dz'></image>
+              <!-- <block wx:if="{{!item.follow}}">
                   <view class='li-like' catchtap='shopLike' data-index='{{index}}'>
                     <image class='likeimg' src='/images/nearbylike.png'></image>
                     <text class='like-number'>{{item.followCount}}</text>
                   </view>
                 </block>
                 <block wx:else> -->
-                  <view class='li-like'>
-                    <image class='likeimg' src='/images/nearbylike-s.png'></image>
-                    <text class='like-number hit'>{{item.followCount}}</text>
-                  </view>
-                <!-- </block> -->
-                <view class='li-sign'>
-                  <view class='li-sign-photo'>
-                    <block wx:for="{{item.userAvatarUrlList}}" wx:key="{{index}}">
-                      <image class='li-sign-photo-i' style="background:url('{{item}}') no-repeat left top / 100% auto"></image>
-                    </block>
-                  </view>
-                  <text class='li-sign-number'>共{{item.shopAutographCount}}人签到</text>
+              <view class='li-like'>
+                <image class='likeimg' src='/images/nearbylike-s.png'></image>
+                <text class='like-number hit'>{{item.followCount}}</text>
+              </view>
+              <!-- </block> -->
+              <view class='li-sign'>
+                <view class='li-sign-photo'>
+                  <block wx:for="{{item.userAvatarUrlList}}" wx:key="{{index}}">
+                    <image class='li-sign-photo-i' style="background:url('{{item}}') no-repeat left top / 100% auto"></image>
+                  </block>
                 </view>
-              </image>
-              <text class='food-name'>{{item.shopName}}</text>
-              <view class='price-position'>
-                <block wx:if="{{item.shopPerCapitaPrice}}">
-                  <view class='price'>￥{{item.shopPerCapitaPrice}}/人</view>
-                </block>
-                <block wx:else>
-                  <view class='price'>价格：到店咨询</view>
-                </block>
-                <view class='food-cate'>
-                  <text class='distance'>{{item.shopClass}}</text>
-                </view>
+                <text class='li-sign-number'>共{{item.shopAutographCount}}人签到</text>
+              </view>
+            </image>
+            <text class='food-name'>{{item.shopName}}</text>
+            <view class='price-position'>
+              <block wx:if="{{item.shopPerCapitaPrice}}">
+                <view class='price'>￥{{item.shopPerCapitaPrice}}/人</view>
+              </block>
+              <block wx:else>
+                <view class='price'>价格：到店咨询</view>
+              </block>
+              <view class='food-cate'>
+                <text class='distance'>{{item.shopClass}}</text>
               </view>
             </view>
-          </block>
-        </view>
-      </block>
-      <block wx:else>
+          </view>
+        </block>
+      </view>
+      <!-- </block> -->
+      <!-- <block wx:else>
         <view class='focusNone'>
           <image class='focusNone-icon' src='/images/focusNone.png'></image>
           <view class='focusNone-text'>你还没有任何关注</view>
         </view>
-      </block>
+      </block> -->
     </view>
 
   </block>
@@ -68,28 +68,33 @@
   <!-- 标签列表 -->
   <block wx:else>
     <view class='labellist'>
-      <block wx:if="{{cityFoodList}}">
+      <!-- <block wx:if="{{!cityFoodList}}"> -->
 
-        <block wx:for="{{cityFoodList}}" wx:key="{{index}}">
-          <view class='label-item'>
-            <view class='item-left'>
-              <image class='storePic' bindtap='toLocalCuisine' data-cityName="{{item.cityName}}" style="background:url('{{item.cityImgUrl}}') no-repeat top left / 100% auto"></image>
-              <view class='storeCate'>
-                <text class='cate-title'>{{item.cityLabel}}</text>
-                <text class='store-number'>{{item.shopCount}}家店铺</text>
-              </view>
+      <block wx:for="{{cityFoodList}}" wx:key="{{index}}">
+        <view class='label-item'>
+          <view class='item-left'>
+            <image class='storePic' bindtap='toLocalCuisine' data-cityName="{{item.cityName}}" style="background:url('{{item.cityImgUrl}}') no-repeat top left / 100% auto"></image>
+            <view class='storeCate'>
+              <text class='cate-title'>{{item.cityLabel}}</text>
+              <text class='store-number'>{{item.shopCount}}家店铺</text>
             </view>
-            <view class='foucsed'>已关注</view>
           </view>
-        </block>
-      </block>
-      <block wx:else>
-        <view class='focusNone'>
-          <image class='focusNone-icon' src='/images/focusNone.png'></image>
-          <view class='focusNone-text'>你还没有任何关注</view>
+          <view class='foucsed'>已关注</view>
         </view>
       </block>
+      <!-- </block> -->
+
     </view>
 
   </block>
+
+
+
+</view>
+
+<view wx:else>
+  <view class='focusNone'>
+    <image class='focusNone-icon' src='/images/focusNone.png'></image>
+    <view class='focusNone-text'>你还没有任何关注</view>
+  </view>
 </view>

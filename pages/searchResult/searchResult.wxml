@@ -20,7 +20,7 @@
   </block>
   <block wx:else>
     <view class='search_hc'>
-      <text class='search_hc_title'>2356家店铺</text>
+      <!-- <text class='search_hc_title'>2356家店铺</text> -->
       <view class='foodlist ul'>
         <!-- <block wx:for="{{foodlist}}"> -->
         <view class='fooditem li' wx:for='{{searchList}}' wx:for-index='index' wx:key='index' data-id='{{item.shopNo}}' bindtap='toShop'>

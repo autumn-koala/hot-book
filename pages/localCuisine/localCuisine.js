@@ -10,8 +10,24 @@ Page({
    */
   data: {
     p: 1,
-
+    scrollTop: true
   },
+
+  /**监听页面滚动 */
+  onPageScroll: function(ev) {
+    if (ev.scrollTop >= 100) {
+      this.setData({
+        scrollTop: false
+      })
+    } else if (ev.scrollTop <= 100) {
+      this.setData({
+        scrollTop: true
+      })
+    }
+  },
+
+
+
   back: function() {
     wx.navigateBack({
       //
@@ -35,7 +51,7 @@ Page({
       method: "post",
       data: {
         "cityName": this.data.CityFoodDetail.cityName,
-        "followFlag": !this.data.CityFoodDetail.follow,
+        // "followFlag": !this.data.CityFoodDetail.follow,
         "userNo": app.globalData.userInfo.userNo
       },
       success: res => {
@@ -92,6 +108,9 @@ Page({
     //获取地方美食明细
     this.getCityFoodDetail();
 
+    this.setData({
+      p: 1
+    })
     //获取地方相关餐厅列表
     wx.request({
       url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryCityShopList',
@@ -99,7 +118,7 @@ Page({
       data: {
         "cityName": this.data.cityName,
         "currentPage": this.data.p,
-        "pageSize": 4,
+        "pageSize": 8,
         "userNo": app.globalData.userInfo.userNo
       },
       success: res => {

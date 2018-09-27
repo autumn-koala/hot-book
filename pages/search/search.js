@@ -39,7 +39,7 @@ Page({
   /*搜索*/
   doSearch : function (item) {
     this.setHistory(item)
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/searchResult/searchResult?searchContext=' + item,
     })
   },

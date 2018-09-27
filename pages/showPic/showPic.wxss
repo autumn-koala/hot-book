@@ -1,0 +1,14 @@
+/* pages/showPic/showPic.wxss */
+.showPic{
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img{
+  width: 100vw;
+  max-height: 1334rpx;
+  /* height: auto; */
+}

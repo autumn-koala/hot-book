@@ -148,6 +148,9 @@ Page({
       searchList:null,
       // searchNone:true
     })
+    wx.navigateBack({
+      
+    })
   },
   /*跳转店铺详情*/
   toShop: function (e) {

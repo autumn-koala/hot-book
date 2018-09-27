@@ -12,15 +12,16 @@ Page({
 
   //保存用户信息
   saveUserInfo: function () {
+    console.log(app)
     util.request('/comm/saveUserInfo', {
-      "city": app.globalData.userInfo.city,
-      "country": app.globalData.userInfo.country,
-      "nickname": app.globalData.userInfo.nickName,
+      "city": this.data.userInfo.city,
+      "country": this.data.userInfo.country,
+      "nickname": this.data.userInfo.nickName,
       "productCode": "600009",
-      "province": app.globalData.userInfo.province,
-      "userAvatarUrl": app.globalData.userInfo.avatarUrl,
+      "province": this.data.userInfo.province,
+      "userAvatarUrl": this.data.userInfo.avatarUrl,
       "userNo": app.globalData.userInfo.userNo,
-      "userSex": app.globalData.userInfo.gender,
+      "userSex": this.data.userInfo.gender,
       "wxOpenId": app.globalData.userInfo.openId
     },
       function (res) {
@@ -28,8 +29,23 @@ Page({
       })
   },
   bindgetuserinfo: function (e) {
+    let that = this
     if (e.detail.userInfo) {
-      app.login();
+      this.setData({
+        userInfo:e.detail.userInfo
+      })
+      console.log(this.data.userInfo)
+      if (app.globalData.userInfo.userNo){
+        console.log(9)
+        // this.saveUserInfo()
+        app.login(that.saveUserInfo)
+      }else{
+        console.log(0)
+        // app.login(that.saveUserInfo)
+        this.saveUserInfo()
+      }
+    
+      // app.login();
       wx.switchTab({
         url: '/pages/index/index',
       })
@@ -72,7 +88,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    this.saveUserInfo();
 
   },
 
