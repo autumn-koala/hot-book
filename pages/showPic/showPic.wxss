@@ -9,6 +9,5 @@
 }
 .img{
   width: 100vw;
-  max-height: 1334rpx;
-  /* height: auto; */
+  height: 100%;
 }

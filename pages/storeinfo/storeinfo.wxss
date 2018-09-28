@@ -1,5 +1,6 @@
 /* pages/storeinfo/storeinfo.wxss */
-.back-bar{
+
+.back-bar {
   width: 100%;
   height: 116rpx;
   padding: 60rpx 30rpx 20rpx;
@@ -10,14 +11,16 @@
   left: 0;
   z-index: 999;
 }
-.back-bar.white{
+
+.back-bar.white {
   background: #fff;
 }
-.back{
+
+.back {
   width: 18rpx;
   height: 37rpx;
+  padding: 0 40rpx 0 0;
 }
-
 
 .back_icon {
   width: 18rpx;

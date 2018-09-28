@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "wait": "/component/wait/wait"
+  }
+}

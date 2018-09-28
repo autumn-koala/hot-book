@@ -35,17 +35,11 @@ Page({
         userInfo:e.detail.userInfo
       })
       console.log(this.data.userInfo)
-      if (app.globalData.userInfo.userNo){
-        console.log(9)
-        // this.saveUserInfo()
-        app.login(that.saveUserInfo)
-      }else{
-        console.log(0)
-        // app.login(that.saveUserInfo)
-        this.saveUserInfo()
-      }
+
     
-      // app.login();
+      app.login(that.saveUserInfo)
+
+      console.log(9)
       wx.switchTab({
         url: '/pages/index/index',
       })
@@ -56,6 +50,8 @@ Page({
       })
     }
   },
+
+
   /**
    * 生命周期函数--监听页面加载
    */

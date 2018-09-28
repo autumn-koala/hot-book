@@ -73,7 +73,7 @@
     <view class='address'>地址：{{ShopDetail.shopAddress}}</view>
   </view>
   <view class='address-right'>
-    <image class='local-icon' src='/images/localtion.png' bindtap='getPosition' data-latitude='{{ShopDetail.shopJingdu}}' data-longitude='{{ShopDetail.shopWeidu}}'></image>
+    <image class='local-icon' src='/images/localtion.png' bindtap='getPosition' data-latitude='{{ShopDetail.shopJingdu}}' data-longitude='{{ShopDetail.shopWeidu}}' data-address="{{ShopDetail.shopAddress}}"></image>
     <block wx:if="{{ShopDetail.shopTel}}">
       <view class='phone' bindtap='tel' data-tel="{{ShopDetail.shopTel}}">
         <image class='phone-icon' src='/images/phone.png'></image>
@@ -169,4 +169,5 @@
       </view>
     </block>
   </view>
+  <wait wait="{{wait}}" />
 </view>

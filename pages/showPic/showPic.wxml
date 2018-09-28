@@ -1,4 +1,4 @@
 <!--pages/showPic/showPic.wxml-->
 <view class='showPic'>
-<image class='img' bindtap='back' src='{{img}}'></image>
+<image class='img' bindtap='back' style="background:url('{{img}}') no-repeat center/100% auto"></image>
 </view>

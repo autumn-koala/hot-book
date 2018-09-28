@@ -83,25 +83,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    
 
     var userNo = wx.getStorageSync("userInfo['userNo']"); //wx.getStorageSync(key)，获取本地缓存
     this.setData({
       userNo: userNo,
       cityName: options.cityName
     })
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
     wx.showLoading({
       title: 'Loading',
     })
@@ -149,6 +138,20 @@ Page({
         })
       }
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+    
   },
   /**店铺关注 */
   shopLike: function(e) {
@@ -208,6 +211,7 @@ Page({
   onReachBottom: function() {
     this.setData({
       p: this.data.p + 1,
+      wait:true
     })
     wx.request({
       url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryShopList',
@@ -223,12 +227,16 @@ Page({
         wx.hideLoading();
         if (res.data.data) {
           this.setData({
+            wait:false,
             ShopList: this.data.ShopList.concat(res.data.data)
           })
         } else {
           wx.showToast({
             title: '没有更多了...',
             icon: 'none'
+          })
+          this.setData({
+            wait: false
           })
         }
 

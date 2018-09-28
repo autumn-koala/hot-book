@@ -47,7 +47,7 @@ App({
             wxCode: res.code
           }, function(res1) {
             console.log(res1);
-            successFn ? successFn():''
+           
             // 获取用户信息
             wx.getSetting({
               success: res => {
@@ -55,16 +55,19 @@ App({
                   // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
                   wx.getUserInfo({
                     success: res => {
+                      console.log(8)
                       // 可以将 res 发送给后台解码出 unionId
                       that.globalData.userInfo = res.userInfo;
                       that.globalData.userInfo['userNo'] = res1.userNo;
                       that.globalData.userInfo['openId'] = res1.openId;
                       that.globalData.userInfo['splashVideo'] = res1.homePageVideoUrl;
                       that.globalData.userInfo['sessionKey'] = res1.sessionKey;
-                      wx.setStorage({
-                        key: 'userInfo',
-                        data: that.globalData.userInfo,
-                      })
+                      successFn ? successFn() : ''
+                      wx.setStorageSync('userInfo', that.globalData.userInfo)
+                      // ({
+                      //   key: 'userInfo',
+                      //   data: that.globalData.userInfo,
+                      // })
                       console.log(that.globalData.userInfo.userNo)
 
                       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -78,11 +81,7 @@ App({
                       }
                     }
                   })
-                }else{
-                  wx.navigateTo({
-                    url: '/pages/login/login',
-                  })
-                }
+                } 
               }
             })
           })

@@ -58,6 +58,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    
     this.setData({
       shopClass: options.shopClass,
       latitude: options.latitude,
@@ -124,7 +125,8 @@ Page({
    */
   onReachBottom: function() {
     this.setData({
-      p: this.data.p + 1
+      p: this.data.p + 1,
+      wait:true
     })
     wx.request({
       url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
@@ -140,6 +142,7 @@ Page({
       success: res => {
         if (res.data.data) {
           this.setData({
+            wait:false,
             NearbyShopList: this.data.NearbyShopList.concat(res.data.data)
           })
         }else{
@@ -147,6 +150,9 @@ Page({
             title: '没有更多了...',
             icon:'none',
             mask:true
+          })
+          this.setData({
+            wait: false
           })
         }
 

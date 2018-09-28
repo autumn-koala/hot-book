@@ -247,11 +247,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    
     this.setData({
       shopNo: options.shopNo,
       shopCity: options.shopCity,
       shopClass: options.shopClass
     })
+    this.getShopDetail();
+    this.getMayLikeList();
   },
 
   /**
@@ -265,10 +268,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getShopDetail();
 
-
-    this.getMayLikeList();
 
 
   },
@@ -315,12 +315,16 @@ Page({
       success: res => {
         if (res.data.data) {
           this.setData({
+            wait: false,
             mayLikeList: this.data.mayLikeList.concat(res.data.data)
           })
         } else {
           wx.showToast({
             title: '没有更多了...',
             icon: "none"
+          })
+          this.setData({
+            wait: false
           })
         }
 

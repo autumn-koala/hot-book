@@ -14,7 +14,7 @@ Page({
     lableList: []
   },
   /**店铺关注 */
-  shopLike: function (e) {
+  shopLike: function(e) {
     let index = e.currentTarget.dataset.index;
     let follow = `NearbyShopList[${index}].follow`;
     let followCount = `NearbyShopList[${index}].followCount`;
@@ -48,7 +48,7 @@ Page({
     })
   },
   // 跳转店铺详情
-  tostoreinfo: function (e) {
+  tostoreinfo: function(e) {
     console.log(e);
     this.setData({
       shopClass: e.currentTarget.dataset.shopclass,
@@ -60,7 +60,7 @@ Page({
   },
 
   //获取用户位置信息
-  getPosition: function() {
+  getPosition: function(sucFun) {
     var that = this;
     wx.getLocation({
       success: function(res) {
@@ -69,6 +69,7 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude
         })
+        sucFun()
       },
     })
   },
@@ -80,7 +81,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getPosition();
+    
+    wx.showToast({
+      title: '正在获取地理位置，请稍候...',
+      icon: "none"
+    })
+    this.getPosition(this.getNearByList);
   },
 
   /**
@@ -90,139 +96,114 @@ Page({
 
   },
 
+getNearByList:function(){
+  var that = this
+  //获取附近标签
+  wx.request({
+    url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryNearbyShopClassList',
+    method: "post",
+    data: {
+      "latitude": that.data.latitude,
+      "longitude": that.data.longitude,
+      "userNo": app.globalData.userInfo.userNo
+    },
+    success: res => {
+      that.setData({
+        NearbyShopClassList: res.data.data
+      })
+    }
+  })
+
+  that.setData({
+    p: 1
+  })
+  //获取附近美食列表
+  wx.request({
+    url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
+    method: "post",
+    data: {
+      "currentPage": that.data.p,
+      "pageSize": "10",
+      "latitude": that.data.latitude,
+      "longitude": that.data.longitude,
+      "userNo": app.globalData.userInfo.userNo
+    },
+    success: res => {
+      that.setData({
+        NearbyShopList: res.data.data
+      })
+    }
+  })
+},
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    //获取用户信息
-    // wx.getLocation({
-    //   success: function(res) {
-    //     latitude: res.latitude;
-    //     longitude: res.longitude;
-    //   },
-    // })
-    // this.getNearBy();
     var that = this;
-
-    setTimeout(function() {
-      wx.showLoading({
-        title: 'Loading...',
-      })
-      if (that.data.latitude && that.data.longitude){
-        //获取附近标签
-        wx.request({
-          url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryNearbyShopClassList',
-          method: "post",
-          data: {
-            "latitude": that.data.latitude,
-            "longitude": that.data.longitude,
-            "userNo": app.globalData.userInfo.userNo
-          },
-          success: res => {
-            wx.hideLoading();
-            that.setData({
-              NearbyShopClassList: res.data.data
-            })
-          }
-        })
-
-        wx.showLoading({
-          title: 'Loading',
-        })
-
-        that.setData({
-          p:1
-        })
-        //获取附近美食列表
-        wx.request({
-          url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
-          method: "post",
-          data: {
-            "currentPage": that.data.p,
-            "pageSize": "8",
-            "latitude": that.data.latitude,
-            "longitude": that.data.longitude,
-            "userNo": app.globalData.userInfo.userNo
-          },
-          success: res => {
-            wx.showToast({
-              title: '正在获取位置，请稍候..',
-              icon: "none"
-            })
-            wx.hideLoading();
-            that.setData({
-              NearbyShopList: res.data.data
-            })
-          }
-        })
-      }
-      // else{
-      //   wx.showToast({
-      //     title: '正在获取位置，请稍候..',
-      //     icon:"none"
-      //   })
-      // }
-     
-    }, 2000)
-
-    // this.getNearBy();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-    this.setData({
-      p: this.data.p + 1
+  onReachBottom: function () {
+    var that = this;
+    that.setData({
+      p: that.data.p + 1,
+      wait: true
     })
     wx.request({
       url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryNearbyShopList',
       method: "post",
       data: {
-        "currentPage": this.data.p,
+        "currentPage": that.data.p,
         "pageSize": "8",
-        "latitude": this.data.latitude,
-        "longitude": this.data.longitude,
+        "latitude": that.data.latitude,
+        "longitude": that.data.longitude,
         "userNo": app.globalData.userInfo.userNo
       },
       success: res => {
         if(res.data.data){
-          this.setData({
-            NearbyShopList: this.data.NearbyShopList.concat(res.data.data)
+          that.setData({
+            wait: false,
+            NearbyShopList: that.data.NearbyShopList.concat(res.data.data)
           })
-        }else{
+        } else {
           wx.showToast({
             title: '没有更多了...',
-            icon:"none",
-            mask:true
+            icon: 'none',
+            mask: true
+          })
+          this.setData({
+            wait: false
           })
         }
         
       }
     })
   },
+
 
   /**
    * 用户点击右上角分享

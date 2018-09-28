@@ -1,5 +1,7 @@
 <!--pages/nearbyCate/nearbyCate.wxml-->
-<image class='back_icon' src='/images/back_black.png' bindtap='back'></image>
+<view class='back-bar'>
+  <image class='back' src='/images/back_black.png' bindtap='back'></image>
+</view>
 <view class='nearbyfood'>
   <view class='nearby'>
     <text class='nearbyfood-title'>附近{{shopClass}}</text>
@@ -52,5 +54,6 @@
         </view>
       </view>
     </block>
+    <wait wait="{{wait}}" />
   </view>
 </view>

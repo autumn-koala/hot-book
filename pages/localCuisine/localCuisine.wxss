@@ -1,7 +1,6 @@
 /* pages/localCuisine/localCuisine.wxss */
 
-
-.back-bar{
+.back-bar {
   width: 100%;
   height: 116rpx;
   padding: 60rpx 30rpx 20rpx;
@@ -12,15 +11,16 @@
   left: 0;
   z-index: 999;
 }
-.back-bar.white{
+
+.back-bar.white {
   background: #fff;
 }
-.back{
+
+.back {
   width: 18rpx;
   height: 37rpx;
+  padding: 0 40rpx 0 0;
 }
-
-
 
 .back_icon {
   width: 18rpx;
@@ -31,25 +31,29 @@
   top: 0;
   z-index: 999;
 }
-.cuisinePic{
+
+.cuisinePic {
   width: 100%;
   height: 400rpx;
   position: relative;
 }
+
 .picture {
   width: 100%;
   height: 100%;
   position: relative;
 }
-.pic-zz{
+
+.pic-zz {
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 0;
   left: 0;
 }
-.cuisin-info{
+
+.cuisin-info {
   width: 100%;
   padding: 0 40rpx;
   box-sizing: border-box;
@@ -60,17 +64,20 @@
   align-items: flex-end;
   color: #fff;
 }
-.localtion-number{
+
+.localtion-number {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.localtion{
+
+.localtion {
   font-size: 40rpx;
   font-weight: 500;
   margin-bottom: 20rpx;
 }
-.number{
+
+.number {
   font-size: 24rpx;
   font-weight: 400;
 }
@@ -80,10 +87,12 @@
   justify-content: space-between;
   align-items: center;
 }
-.share-icon{
+
+.share-icon {
   width: 30rpx;
   height: 24rpx;
 }
+
 .cuisin_share {
   font-size: 24rpx;
   font-weight: 500;
@@ -107,65 +116,72 @@
   color: #fff;
 }
 
-
-
-
-
 /* 相关餐厅 */
-.cate{
+
+.cate {
   margin-top: 40rpx;
 }
-.cate-title{
+
+.cate-title {
   margin-left: 40rpx;
   font-size: 34rpx;
-  color: #000000;
+  color: #000;
   font-weight: 500;
 }
-.cate-scroll{
+
+.cate-scroll {
   /* width: auto; */
   height: 170rpx;
   margin-top: 40rpx;
   white-space: nowrap;
 }
-.cate-image{
+
+.cate-image {
   width: 200rpx;
   height: 114rpx;
   /* margin-right: 20rpx; */
   border-radius: 10rpx;
   position: relative;
 }
-.cate-image-zz{
+
+.cate-image-zz {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 49rpx;
 }
-.cate-scroll .cate-item{
+
+.cate-scroll .cate-item {
   width: 200rpx;
   display: inline-block;
   margin-right: 20rpx;
 }
-.cate-scroll .cate-item:first-child{
+
+.cate-scroll .cate-item:first-child {
   margin-left: 40rpx;
 }
-.cate-scroll .cate-item:last-child{
+
+.cate-scroll .cate-item:last-child {
   margin-right: 40rpx;
 }
-.cate-item .cate-box{
+
+.cate-item .cate-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   /* margin-right: 20rpx; */
 }
-.cate-scroll .number{
+
+.cate-scroll .number {
   font-size: 20rpx;
   position: absolute;
   bottom: 10rpx;
   left: 9rpx;
   color: #fff;
 }
-.cate-scroll .storename{
+
+.cate-scroll .storename {
   width: 150rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -175,41 +191,49 @@
   color: #000;
   margin-top: 22rpx;
 }
-::-webkit-scrollbar{
-width: 0;
-height: 0;
-color: transparent;
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }
 
 /* 全部 */
-.nearbyfood{
+
+.nearbyfood {
   margin: 60rpx 40rpx 0;
 }
-.nearby{
+
+.nearby {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
-.nearbyfood-title{
+
+.nearbyfood-title {
   font-size: 34rpx;
   font-weight: 500;
   color: #000;
 }
-.nearbyfood-recommed{
+
+.nearbyfood-recommed {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-.recommed-text{
+
+.recommed-text {
   font-size: 28rpx;
   font-weight: 400;
   color: #000;
 }
-.slidedown{
+
+.slidedown {
   width: 14rpx;
   height: 10rpx;
   margin-left: 9rpx;
 }
+
 .ul {
   width: 670rpx;
   margin-top: 40rpx;
@@ -237,13 +261,15 @@ color: transparent;
   margin-bottom: 30rpx;
   position: relative;
 }
-.li-pic-dz{
+
+.li-pic-dz {
   width: 100%;
   height: 100rpx;
   position: absolute;
   left: 0;
   bottom: 0;
 }
+
 .li-like {
   position: absolute;
   top: 20rpx;
@@ -264,9 +290,11 @@ color: transparent;
   font-weight: 400;
   color: #fff;
 }
-.like-number.hit{
+
+.like-number.hit {
   color: #f55;
 }
+
 .li-sign {
   position: absolute;
   left: 15rpx;
@@ -287,19 +315,22 @@ color: transparent;
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;
-  border: 1rpx  solid #eaeaea;
+  border: 1rpx solid #eaeaea;
   box-sizing: border-box;
   position: absolute;
   left: 0;
   top: 0;
 }
-.li-sign-photo-i:nth-child(2){
+
+.li-sign-photo-i:nth-child(2) {
   left: 26rpx;
 }
-.li-sign-photo-i:nth-child(3){
+
+.li-sign-photo-i:nth-child(3) {
   left: 52rpx;
 }
-.li-sign-number{
+
+.li-sign-number {
   font-size: 20rpx;
   font-weight: 400;
   color: #fff;

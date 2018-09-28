@@ -100,4 +100,5 @@
       </view>
     </block>
   </view>
+  <wait wait="{{wait}}" />
 </view>

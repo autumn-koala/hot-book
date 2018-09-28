@@ -1,7 +1,5 @@
 {
   "navigationBarTitleText": "网红店",
-  "onReachBottomDistance": "50",
-  "enablePullDownRefresh": true,
   "usingComponents": {
     "loading": "/component/loading/loading",
     "wait": "/component/wait/wait",

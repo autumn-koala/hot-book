@@ -20,20 +20,6 @@ Page({
     userNo: null
   },
 
-  //获取用户位置信息
-  // getPosition: function() {
-  //   var that = this;
-  //   wx.getLocation({
-  //     success: function(res) {
-  //       console.log(res)
-  //       that.setData({
-  //         latitude: res.latitude,
-  //         longitude: res.longitude
-  //       })
-  //     },
-  //   })
-  // },
-
 
 
   tosearch: function() {
@@ -83,7 +69,6 @@ Page({
             [followCount]: this.data.ShopList[index].followCount + 1
           })
         }
-        // this.getShopListAll();
       }
     })
   },
@@ -105,40 +90,22 @@ Page({
   },
 
 
-  //保存用户信息
-  // saveUserInfo: function() {
-  //   util.request('/comm/saveUserInfo', {
-  //       "city": app.globalData.userInfo.city,
-  //       "country": app.globalData.userInfo.country,
-  //       "nickname": app.globalData.userInfo.nickName,
-  //       "productCode": "600009",
-  //       "province": app.globalData.userInfo.province,
-  //       "userAvatarUrl": app.globalData.userInfo.avatarUrl,
-  //       "userNo": app.globalData.userInfo.userNo,
-  //       "userSex": app.globalData.userInfo.gender,
-  //       "wxOpenId": app.globalData.userInfo.openId
-  //     },
-  //     function(res) {
-  //       //
-  //     })
-  // },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.getSetting({
-      
-    })
-    // this.getHomePage();
-    // this.saveUserInfo();
-    // this.setData({
-    //   userNo: app.globalData.userInfo.userNo
-    // })
-    // this.getPosition();
-    // wx.request({
-    //   url: '',
-    // })
+    
+    this.getPageHomeBanner();
+
+    this.getCityClassifyList();
+    var userInfo = wx.getStorageSync('userInfo');
+    if(!userInfo){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }
+ 
   },
 
   /**
@@ -150,6 +117,9 @@ Page({
 
   //获取首页全部店铺列表
   getShopListAll: function() {
+    wx.showLoading({
+      title: 'Loading...',
+    })
     this.setData({
       p:1
     })
@@ -174,7 +144,6 @@ Page({
     wx.request({
       url: 'https://www.qiyuchuhai.com/xcx/red_shop/queryPageHomeBanner',
       success: res => {
-        // wx.hideLoading();
         this.setData({
           Banner: res.data.data
         })
@@ -194,27 +163,13 @@ Page({
     })
   },
 
-  getHomePage:function(){
-    app.login(this.getShopListAll)
-    this.getShopListAll();
-
-    this.getPageHomeBanner();
-
-    this.getCityClassifyList();
-  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    // this.getShopListAll();
-
-    // this.getPageHomeBanner();
-
-    // this.getCityClassifyList();
-    this.getHomePage();
+    app.login(this.getShopListAll)
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -233,7 +188,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    // this.getHomePage();
+    
   },
 
   /**
